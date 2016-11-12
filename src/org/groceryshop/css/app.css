@@ -1,0 +1,27 @@
+.logo {
+    -fx-background-image: url("../image/user_100_100.png");
+}
+
+.label {
+    -fx-font-size: 14pt;
+}
+
+.button {
+    -fx-font-size: 13pt;
+}
+
+.text-field {
+    -fx-font-size: 12pt;
+}
+
+.password-field {
+    -fx-font-size: 12pt;
+}
+
+.hyperlink {
+    -fx-border-style: none;
+}
+
+.text-area {
+    -fx-font-size: 12pt;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="602.0">
+            <children>
+                <TableView fx:id="searchandselectcustomertable" layoutX="2.0" layoutY="4.0" prefHeight="378.0"
+                           prefWidth="591.0">
+                    <columns>
+                        <TableColumn fx:id="customername" prefWidth="150.0" text=" Customer Name"/>
+                        <TableColumn fx:id="customeraddress" minWidth="0.0" prefWidth="127.0" text="Address"/>
+                        <TableColumn fx:id="customermobile" prefWidth="138.0" text="Mobile Number"/>
+                        <TableColumn fx:id="customerselect" prefWidth="131.0" text="Select One"/>
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" id="tablescrollpane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="834.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="org.groceryshop.controller.TableController">
+    <content>
+        <AnchorPane id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="833.0">
+            <children>
+                <TableView id="datatable" fx:id="datatable" editable="true" layoutY="3.0" prefHeight="394.0"
+                           prefWidth="834.0">
+                    <columns>
+                        <TableColumn id="serialnumber" fx:id="sno" prefWidth="75.0" text="sr. no."/>
+                        <TableColumn id="iname" fx:id="iname" prefWidth="199.0" text="item Name"/>
+                        <TableColumn fx:id="iweight" prefWidth="75.0" text="weight"/>
+                        <TableColumn id="iprice" fx:id="iprice" prefWidth="174.0" text="price"/>
+                        <TableColumn fx:id="iavailable" prefWidth="75.0" text="avaibale"/>
+                        <TableColumn fx:id="iunit" prefWidth="75.0" text="unit"/>
+                        <TableColumn fx:id="igroup" prefWidth="75.0" text="group"/>
+                        <TableColumn fx:id="action" prefWidth="95.0" text="action"/>
+                    </columns>
+                </TableView>
+                <Button layoutX="698.0" layoutY="410.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0"
+                        prefWidth="115.0" text="Add" AnchorPane.rightAnchor="20.0"/>
+                <ProgressIndicator fx:id="batchProgress" layoutX="7.0" layoutY="400.0" prefHeight="46.0"
+                                   prefWidth="62.0" progress="0.0"/>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>
