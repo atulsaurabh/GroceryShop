@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,8 +19,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Created by atul_saurabh on 31/10/16.
@@ -139,7 +142,22 @@ public class AddItemModel {
             factory.close();
             return units;
         } catch (Exception e) {
-            Logger.getLogger(AddItemModel.class.getName()).log(Level.SEVERE, "Unable to fetch units " + e.getMessage(), e);
+            Logger l = Logger.getLogger(AddItemModel.class.getName()); //
+            try {
+                SimpleFormatter formatter = new SimpleFormatter();
+
+                FileHandler handler = new FileHandler(AddItemModel.class.getResource("/org/groceryshop/log/database.log").getPath(), true);
+                handler.setFormatter(formatter);
+                l.addHandler(handler);
+
+                l.setUseParentHandlers(true);
+                l.log(Level.SEVERE, "Unable to fetch units " + e.getMessage(), e);
+
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+
+
         }
         return null;
     }
