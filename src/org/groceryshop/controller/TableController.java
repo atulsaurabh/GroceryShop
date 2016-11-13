@@ -47,7 +47,7 @@ public class TableController implements ItemController {
     private TableColumn itemUnit;
 
     private ObservableList<StoreItem> data = FXCollections.observableArrayList();
-    private String unit_choice;
+
     private int srno = 0;
     private TableController me = this;
     private ArrayList<Long> ids = new ArrayList<>();
