@@ -2,10 +2,10 @@ package org.groceryshop.component;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.groceryshop.entity.StoreItem;
+
+import java.util.Optional;
 
 /**
  * Created by atul_saurabh on 31/10/16.
@@ -68,9 +68,31 @@ public class ItemPriceCell extends TableCell<StoreItem, Float> {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!newValue) {
                     try {
-                        commitEdit(Float.parseFloat(item.getText()));
+                        float price = Float.parseFloat(item.getText());
+                        if (price == 0) {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Confirm");
+                            alert.setContentText("Are you sure that price is 0");
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == ButtonType.OK)
+                                commitEdit(0.0f);
+                            else
+                                datatable.getSelectionModel().selectPrevious();
+                        } else
+                            commitEdit(price);
                     } catch (Exception e) {
-
+                        if (item.getText().equals("")) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Invalid Price");
+                            alert.setContentText("Price Can Not Be Blank");
+                            alert.showAndWait();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Invalid Price");
+                            alert.setContentText("Price Can be numeric only");
+                            alert.showAndWait();
+                        }
+                        datatable.getSelectionModel().selectPrevious();
                     }
 
                 }

@@ -2,9 +2,7 @@ package org.groceryshop.component;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.groceryshop.entity.StoreItem;
 
 /**
@@ -70,7 +68,17 @@ public class ItemWeightCell extends TableCell<StoreItem, Double> {
                     try {
                         commitEdit(Double.parseDouble(item.getText()));
                     } catch (Exception e) {
-
+                        TablePosition pos = datatable.getFocusModel().getFocusedCell();
+                        if (item.getText().equals("")) {
+                            item.setText("0.0");
+                            commitEdit(0.00d);
+                        } else {
+                            Alert a = new Alert(Alert.AlertType.INFORMATION);
+                            a.setTitle("Invalid Weight");
+                            a.setContentText("Weight Can be numeric only");
+                            a.showAndWait();
+                            datatable.getSelectionModel().selectPrevious();
+                        }
                     }
 
                 }

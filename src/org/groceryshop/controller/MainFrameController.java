@@ -78,7 +78,6 @@ public class MainFrameController {
             anchorPane.setPrefWidth(window.getWidth() - 70);
             TableView tableView = (TableView) scrollpane.getContent().lookup("#datatable");
             tableView.setPrefWidth(window.getWidth() - 80);
-            System.out.print(tableView.getId());
             Tab tab = new Tab("Add Item");
             tab.setContent(scrollpane);
             tabPane.getTabs().add(tab);
