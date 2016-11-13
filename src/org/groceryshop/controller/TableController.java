@@ -42,6 +42,10 @@ public class TableController implements ItemController {
     private TableColumn iweight;
     @FXML
     private TableColumn igroup;
+
+    @FXML
+    private TableColumn itemUnit;
+
     private ObservableList<StoreItem> data = FXCollections.observableArrayList();
     private String unit_choice;
     private int srno = 0;
@@ -59,6 +63,7 @@ public class TableController implements ItemController {
         iweight.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("weight"));
         iavailable.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("quantity"));
         igroup.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("groupname"));
+        itemUnit.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("itemunit"));
         iname.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
             public TableCell call(TableColumn param) {
@@ -79,7 +84,7 @@ public class TableController implements ItemController {
         iunit.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
             public TableCell call(TableColumn param) {
-                ItemUnitCell cell = new ItemUnitCell(datatable);
+                ItemUnitCell cell = new ItemUnitCell(datatable, "unit");
                 return cell;
             }
         });
@@ -107,6 +112,14 @@ public class TableController implements ItemController {
             }
         });
 
+        itemUnit.setCellFactory(new Callback<TableColumn, TableCell>() {
+            @Override
+            public TableCell call(TableColumn param) {
+                ItemUnitCell cell = new ItemUnitCell(datatable, "itemunit");
+                return cell;
+            }
+        });
+
         srno++;
         data.add(new StoreItem(srno, DeleteButton.getDeleteButton(datatable)));
         datatable.setItems(data);
@@ -118,7 +131,7 @@ public class TableController implements ItemController {
                 if (event.getCode() == KeyCode.TAB) {
                     datatable.getSelectionModel().selectNext();
                     TablePosition pos = datatable.getFocusModel().getFocusedCell();
-                    if (pos.getColumn() == 7) {
+                    if (pos.getColumn() == 8) {
                         TAB_COUNT++;
                         if (TAB_COUNT == 2) {
                             StoreItem p = (StoreItem) datatable.getItems().get(pos.getRow());

@@ -24,6 +24,7 @@ public class StoreItem {
     private double remaining;
     private double weight;
     private String groupname;
+    private String itemunit;
 
     private ItemGroup group;
 
@@ -147,5 +148,14 @@ public class StoreItem {
 
     public void setGroupname(String groupname) {
         this.groupname = groupname;
+    }
+
+
+    public String getItemunit() {
+        return itemunit;
+    }
+
+    public void setItemunit(String itemunit) {
+        this.itemunit = itemunit;
     }
 }

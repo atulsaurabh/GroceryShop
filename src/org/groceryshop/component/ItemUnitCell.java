@@ -19,9 +19,12 @@ public class ItemUnitCell extends TableCell<StoreItem, String> {
     private TextField item;
 
     private TableView<StoreItem> datatable;
+    private String fieldName;
 
-    public ItemUnitCell(TableView<StoreItem> datatable) {
+    public ItemUnitCell(TableView<StoreItem> datatable, String fieldName) {
         this.datatable = datatable;
+        this.fieldName = fieldName;
+
     }
 
     @Override
@@ -41,7 +44,14 @@ public class ItemUnitCell extends TableCell<StoreItem, String> {
     public void commitEdit(String newValue) {
         int k = datatable.getFocusModel().getFocusedIndex();
         StoreItem i = datatable.getItems().get(k);
-        i.setUnit(newValue);
+        switch (fieldName) {
+            case "unit":
+                i.setUnit(newValue);
+                break;
+            case "itemunit":
+                i.setItemunit(newValue);
+        }
+
         setText(item.getText());
         setGraphic(null);
         //
