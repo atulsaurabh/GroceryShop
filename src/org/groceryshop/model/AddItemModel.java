@@ -7,7 +7,6 @@ import org.groceryshop.entity.StoreItem;
 import org.groceryshop.entity.UnitForSell;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.jetbrains.annotations.Contract;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -73,17 +72,6 @@ public class AddItemModel {
         return false;
     }
 
-    @Contract(pure = true)
-    private boolean allSuccess(int[] success) {
-        boolean isSuccess = true;
-        for (int i = 0; i < success.length; i++) {
-            if (!(success[i] > 0)) {
-                isSuccess = false;
-                break;
-            }
-        }
-        return isSuccess;
-    }
 
     public List<String> getItems(String search) {
         try {
