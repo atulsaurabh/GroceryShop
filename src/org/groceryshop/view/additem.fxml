@@ -14,10 +14,10 @@
                         <TableColumn id="serialnumber" fx:id="sno" prefWidth="75.0" text="sr. no."/>
                         <TableColumn id="iname" fx:id="iname" prefWidth="199.0" text="item Name"/>
                         <TableColumn fx:id="iweight" prefWidth="75.0" text="weight"/>
-                        <TableColumn fx:id="itemUnit" prefWidth="129.0" text="item unit"/>
+                        <TableColumn fx:id="itemUnit" prefWidth="129.0" text="printed unit"/>
                         <TableColumn id="iprice" fx:id="iprice" prefWidth="120.0" text="price"/>
                         <TableColumn fx:id="iavailable" prefWidth="75.0" text="avaibale"/>
-                        <TableColumn fx:id="iunit" prefWidth="75.0" text="unit"/>
+                        <TableColumn fx:id="iunit" prefWidth="75.0" text="sell unit"/>
                         <TableColumn fx:id="igroup" prefWidth="75.0" text="group"/>
                         <TableColumn fx:id="action" prefWidth="95.0" text="action"/>
                     </columns>

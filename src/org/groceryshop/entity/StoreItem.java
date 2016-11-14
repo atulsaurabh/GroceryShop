@@ -17,14 +17,14 @@ public class StoreItem {
     private long itemid;
     private String itemname;
     private float price;
-    private String unit;
+    private String sellunit;
     private Button action;
     private double quantity;
     private double purchasequantity;
     private double remaining;
     private double weight;
     private String groupname;
-    private String itemunit;
+    private String printedunit;
 
     private ItemGroup group;
 
@@ -41,7 +41,7 @@ public class StoreItem {
         srno = s;
         itemname = item;
         price = p;
-        unit = u;
+        sellunit = u;
         action = checkBox;
     }
 
@@ -70,13 +70,6 @@ public class StoreItem {
         this.price = price;
     }
 
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
 
     @Transient
     public Button getAction() {
@@ -150,12 +143,19 @@ public class StoreItem {
         this.groupname = groupname;
     }
 
-
-    public String getItemunit() {
-        return itemunit;
+    public String getSellunit() {
+        return sellunit;
     }
 
-    public void setItemunit(String itemunit) {
-        this.itemunit = itemunit;
+    public void setSellunit(String sellunit) {
+        this.sellunit = sellunit;
+    }
+
+    public String getPrintedunit() {
+        return printedunit;
+    }
+
+    public void setPrintedunit(String printedunit) {
+        this.printedunit = printedunit;
     }
 }

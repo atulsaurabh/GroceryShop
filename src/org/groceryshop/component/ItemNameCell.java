@@ -2,6 +2,7 @@ package org.groceryshop.component;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,6 +35,14 @@ public class ItemNameCell extends TableCell<StoreItem, String> {
 
     @Override
     public void commitEdit(String newValue) {
+        if (item.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Item Name Unavailable");
+            alert.setContentText("Item Name Can Not Be Blank");
+            alert.showAndWait();
+            datatable.getSelectionModel().selectPrevious();
+            return;
+        }
         int k = datatable.getFocusModel().getFocusedIndex();
         StoreItem i = datatable.getItems().get(k);
         i.setItemname(newValue);

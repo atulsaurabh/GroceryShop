@@ -2,6 +2,7 @@ package org.groceryshop.component;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -46,10 +47,10 @@ public class ItemUnitCell extends TableCell<StoreItem, String> {
         StoreItem i = datatable.getItems().get(k);
         switch (fieldName) {
             case "unit":
-                i.setUnit(newValue);
+                i.setSellunit(newValue);
                 break;
             case "itemunit":
-                i.setItemunit(newValue);
+                i.setPrintedunit(newValue);
         }
 
         setText(item.getText());
@@ -98,8 +99,17 @@ public class ItemUnitCell extends TableCell<StoreItem, String> {
         item.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!newValue)
+                if (!newValue) {
+                    if (fieldName.equals("unit") && item.getText().equals("")) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Selling unit Error");
+                        alert.setContentText("Selling unit can not be blank");
+                        alert.showAndWait();
+                        datatable.getSelectionModel().selectPrevious();
+                    } else
                     commitEdit(item.getText());
+                }
+
             }
         });
     }
