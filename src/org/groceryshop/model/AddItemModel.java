@@ -12,10 +12,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -77,18 +73,24 @@ public class AddItemModel {
 
 
     public List<String> getItems(String search) {
+        ArrayList<String> nameAndIds = new ArrayList<>();
+        SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
+        Session session = factory.openSession();
         try {
-            ArrayList<String> list = new ArrayList<>();
-            Connection connection = DatabaseConnection.getDatabaseConnection();
-            String query = "SELECT * FROM items where item_name LIKE ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, search + "%");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                list.add(resultSet.getString(2) + "@" + resultSet.getString(1));
+            CriteriaBuilder builder = factory.getCriteriaBuilder();
+            CriteriaQuery<StoreItem> query = builder.createQuery(StoreItem.class);
+            Root<StoreItem> root = query.from(StoreItem.class);
+            query.select(root);
+            query.where(builder.like(root.get("itemname"), search + "%"));
+            List<StoreItem> storeItems = session.createQuery(query).list();
+
+            for (StoreItem s : storeItems) {
+                nameAndIds.add(s.getItemname() + "@" + s.getItemid());
             }
-            return list;
-        } catch (SQLException sqle) {
+
+            return nameAndIds;
+
+        } catch (Exception sqle) {
             Logger.getLogger(AddItemModel.class.getName()).log(
                     Level.SEVERE,
                     "Unable to fetch items " + sqle.getMessage(),
@@ -97,8 +99,9 @@ public class AddItemModel {
         } finally {
 
             try {
-                DatabaseConnection.closeConnection();
-            } catch (SQLException sqle) {
+                session.close();
+                factory.close();
+            } catch (Exception sqle) {
                 Logger.getLogger(AddItemModel.class.getName()).log(
                         Level.SEVERE,
                         "Unable to close database connection " + sqle.getMessage(),

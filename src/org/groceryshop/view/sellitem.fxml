@@ -23,7 +23,8 @@
                                 <TableColumn fx:id="serialnumber" prefWidth="75.0" text="Sr. No."/>
                                 <TableColumn fx:id="itemname" prefWidth="161.0" text="Item Name"/>
                                 <TableColumn fx:id="quantity" prefWidth="99.0" text="Quantity"/>
-                                <TableColumn fx:id="price" prefWidth="95.0" text="Price"/>
+                                <TableColumn fx:id="sellunit" prefWidth="92.0" text="unit"/>
+                                <TableColumn fx:id="price" prefWidth="78.0" text="Price"/>
                                 <TableColumn fx:id="action" prefWidth="75.0" text="Action"/>
                             </columns>
                         </TableView>

@@ -47,6 +47,9 @@ public class SellItemController implements ItemController {
     @FXML
     private TableColumn action;
 
+    @FXML
+    private TableColumn sellunit;
+
     private ObservableList<StoreItem> data = FXCollections.observableArrayList();
 
     private ArrayList<String> itemids = new ArrayList<>();
