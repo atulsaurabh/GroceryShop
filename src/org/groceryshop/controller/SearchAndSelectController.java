@@ -11,8 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.groceryshop.entity.Customer;
-import org.groceryshop.model.AddCustomer;
+import org.groceryshop.model.Customer;
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ import java.util.List;
 public class SearchAndSelectController {
     private String nameToSearch;
     @FXML
-    private TableView<Customer> searchandselectcustomertable;
+    private TableView<org.groceryshop.entity.Customer> searchandselectcustomertable;
     @FXML
     private TableColumn customername;
     @FXML
@@ -36,7 +35,7 @@ public class SearchAndSelectController {
     private ItemController controller;
     private Stage childWindow;
 
-    private ObservableList<Customer> data = FXCollections.observableArrayList();
+    private ObservableList<org.groceryshop.entity.Customer> data = FXCollections.observableArrayList();
 
     public SearchAndSelectController(String nameToSearch, ItemController controller, Stage stage) {
         this.nameToSearch = nameToSearch;
@@ -47,14 +46,14 @@ public class SearchAndSelectController {
 
     public void initialize() {
         ToggleGroup toggleGroup = new ToggleGroup();
-        customername.setCellValueFactory(new PropertyValueFactory<Customer, String>("customername"));
-        customeraddress.setCellValueFactory(new PropertyValueFactory<Customer, String>("address"));
-        customermobile.setCellValueFactory(new PropertyValueFactory<Customer, String>("mobilenumber"));
-        customerselect.setCellValueFactory(new PropertyValueFactory<Customer, RadioButton>("radioButton"));
-        AddCustomer addCustomer = new AddCustomer();
+        customername.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, String>("customername"));
+        customeraddress.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, String>("address"));
+        customermobile.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, String>("mobilenumber"));
+        customerselect.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, RadioButton>("radioButton"));
+        Customer addCustomer = new Customer();
         data.clear();
-        List<Customer> customers = addCustomer.getAllCustomers(nameToSearch);
-        for (Customer c : customers) {
+        List<org.groceryshop.entity.Customer> customers = addCustomer.getAllCustomers(nameToSearch);
+        for (org.groceryshop.entity.Customer c : customers) {
             RadioButton r = new RadioButton();
             r.setToggleGroup(toggleGroup);
             r.setOnAction(new EventHandler<ActionEvent>() {

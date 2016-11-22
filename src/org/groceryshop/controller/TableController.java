@@ -12,7 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import org.groceryshop.component.*;
 import org.groceryshop.entity.StoreItem;
-import org.groceryshop.model.AddItemModel;
+import org.groceryshop.model.ItemModel;
 
 import java.util.ArrayList;
 
@@ -58,12 +58,12 @@ public class TableController implements ItemController {
         sno.setCellValueFactory(new PropertyValueFactory<StoreItem, Integer>("srno"));
         iname.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("itemname"));
         iprice.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("price"));
-        iunit.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("unit"));
+        iunit.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("sellunit"));
         action.setCellValueFactory(new PropertyValueFactory<StoreItem, Button>("action"));
         iweight.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("weight"));
         iavailable.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("quantity"));
         igroup.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("groupname"));
-        itemUnit.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("itemunit"));
+        itemUnit.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("printedunit"));
         iname.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
             public TableCell call(TableColumn param) {
@@ -151,7 +151,7 @@ public class TableController implements ItemController {
 
     @FXML
     public void addItem(ActionEvent actionEvent) {
-        AddItemModel model = new AddItemModel();
+        ItemModel model = new ItemModel();
         if (model.addNewItem(data, batchProgress, ids)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Item Added Successfully");

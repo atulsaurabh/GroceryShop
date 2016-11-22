@@ -8,7 +8,7 @@ import org.groceryshop.entity.StoreItem;
 /**
  * Created by atul_saurabh on 6/11/16.
  */
-public class ItemWeightCell extends TableCell<StoreItem, Double> {
+public class ItemWeightCell extends TableCell<StoreItem, Float> {
     private TextField item;
 
     private TableView<StoreItem> datatable;
@@ -31,17 +31,17 @@ public class ItemWeightCell extends TableCell<StoreItem, Double> {
     }
 
     @Override
-    public void commitEdit(Double newValue) {
+    public void commitEdit(Float newValue) {
         int k = datatable.getFocusModel().getFocusedIndex();
         StoreItem i = datatable.getItems().get(k);
-        i.setWeight(newValue);
+        i.setWeightofitme(newValue);
         setText(item.getText());
         setGraphic(null);
     }
 
 
     @Override
-    protected void updateItem(Double item, boolean empty) {
+    protected void updateItem(Float item, boolean empty) {
         super.updateItem(item, empty);
         if (empty) {
             setText(null);
@@ -66,12 +66,12 @@ public class ItemWeightCell extends TableCell<StoreItem, Double> {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!newValue) {
                     try {
-                        commitEdit(Double.parseDouble(item.getText()));
+                        commitEdit(Float.parseFloat(item.getText()));
                     } catch (Exception e) {
                         TablePosition pos = datatable.getFocusModel().getFocusedCell();
                         if (item.getText().equals("")) {
                             item.setText("0.0");
-                            commitEdit(0.00d);
+                            commitEdit(0.00f);
                         } else {
                             Alert a = new Alert(Alert.AlertType.INFORMATION);
                             a.setTitle("Invalid Weight");

@@ -8,8 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.groceryshop.entity.Customer;
-import org.groceryshop.model.AddCustomer;
+import org.groceryshop.model.Customer;
 
 /**
  * Created by atul_saurabh on 31/10/16.
@@ -31,17 +30,17 @@ public class AddCustomerController {
     public void initialize() {
 
         customeradd.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/org/groceryshop/image/plus_20_20.png"))));
-        accountnumber.setText(AddCustomer.getNextAccountNumber());
+        accountnumber.setText(Customer.getNextAccountNumber());
     }
 
     public void addCustomer(ActionEvent event) {
-        Customer customer = new Customer();
+        org.groceryshop.entity.Customer customer = new org.groceryshop.entity.Customer();
         customer.setAccountnumber(accountnumber.getText());
         customer.setCustomername(customername.getText());
         customer.setOccupation(occupation.getText());
         customer.setAddress(address.getText());
         customer.setMobilenumber(mobilenumber.getText());
-        AddCustomer addCustomer = new AddCustomer();
+        Customer addCustomer = new Customer();
         if (addCustomer.addCustomer(customer)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Customer Added Successfully");
@@ -51,7 +50,7 @@ public class AddCustomerController {
             occupation.clear();
             address.clear();
             mobilenumber.clear();
-            accountnumber.setText(AddCustomer.getNextAccountNumber());
+            accountnumber.setText(Customer.getNextAccountNumber());
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Customer Not Added ");

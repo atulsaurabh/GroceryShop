@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /**
  * Created by atul_saurabh on 6/11/16.
  */
-public class GroupCreatorModel {
+public class ItemGroupModel extends Group<ItemGroup> {
     public boolean isGroupExist(String goupname) {
         try {
             SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
@@ -32,30 +32,9 @@ public class GroupCreatorModel {
             factory.close();
             return !groups.isEmpty();
         } catch (Exception e) {
-            Logger.getLogger(GroupCreatorModel.class.getName()).log(
+            Logger.getLogger(ItemGroupModel.class.getName()).log(
                     Level.SEVERE,
                     "Unable to find group name " + e.getMessage(),
-                    e
-            );
-        }
-        return false;
-    }
-
-    public boolean addGroup(ItemGroup group) {
-        try {
-            SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
-            Session session = factory.openSession();
-            session.getTransaction().begin();
-            session.persist(group);
-            session.getTransaction().commit();
-            session.close();
-            factory.close();
-            return true;
-        } catch (Exception e) {
-
-            Logger.getLogger(GroupCreatorModel.class.getName()).log(
-                    Level.SEVERE,
-                    "Unable to add group " + e.getMessage(),
                     e
             );
         }
@@ -81,7 +60,7 @@ public class GroupCreatorModel {
 
 
         } catch (Exception ex) {
-            Logger.getLogger(GroupCreatorModel.class.getName()).log(
+            Logger.getLogger(ItemGroupModel.class.getName()).log(
                     Level.SEVERE,
                     "Unable to fetch groups " + ex.getMessage(),
                     ex

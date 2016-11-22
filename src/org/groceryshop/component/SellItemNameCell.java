@@ -11,7 +11,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.groceryshop.controller.ItemController;
 import org.groceryshop.entity.StoreItem;
-import org.groceryshop.model.AddItemModel;
+import org.groceryshop.model.ItemModel;
 
 /**
  * Created by atul_saurabh on 2/11/16.
@@ -71,7 +71,7 @@ public class SellItemNameCell extends TableCell<StoreItem, String> {
         item = new TextField();
 
         AutoCompletionBinding t = TextFields.bindAutoCompletion(item, t1 -> {
-                    return new AddItemModel().getItems(t1.getUserText());
+            return new ItemModel().getItems(t1.getUserText());
                 }, new StringConverter<String>() {
                     @Override
                     public String toString(String object) {

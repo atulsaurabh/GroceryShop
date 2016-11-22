@@ -10,19 +10,10 @@ import javax.persistence.*;
 public class UnitForSell {
     private String unitName;
     private double divisionFactor;
-    private int unitid;
+    private SellingUnitGroup group;
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getUnitid() {
-        return unitid;
-    }
-
-    public void setUnitid(int unitid) {
-        this.unitid = unitid;
-    }
-
     public String getUnitName() {
         return unitName;
     }
@@ -37,5 +28,15 @@ public class UnitForSell {
 
     public void setDivisionFactor(double divisionFactor) {
         this.divisionFactor = divisionFactor;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "sellingunitgroupid")
+    public SellingUnitGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(SellingUnitGroup group) {
+        this.group = group;
     }
 }

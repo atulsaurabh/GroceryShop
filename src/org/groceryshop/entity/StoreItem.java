@@ -16,18 +16,16 @@ public class StoreItem {
     private int srno;
     private long itemid;
     private String itemname;
-    private float price;
-    private String sellunit;
+    private float priceperunit;
     private Button action;
-    private double quantity;
-    private double purchasequantity;
-    private double remaining;
-    private double weight;
+    private float availablequantity;
+    private float purchasequantity;
+    private float remainingquantity;
+    private float weightofitme;
     private String groupname;
     private String printedunit;
 
     private ItemGroup group;
-
     public StoreItem(int s, Button button) {
         srno = s;
         action = button;
@@ -37,11 +35,10 @@ public class StoreItem {
 
     }
 
-    public StoreItem(int s, String item, float p, String u, Button checkBox) {
+    public StoreItem(int s, String item, float p, Button checkBox) {
         srno = s;
         itemname = item;
-        price = p;
-        sellunit = u;
+        priceperunit = p;
         action = checkBox;
     }
 
@@ -54,32 +51,6 @@ public class StoreItem {
         this.srno = srno;
     }
 
-    public String getItemname() {
-        return itemname;
-    }
-
-    public void setItemname(String itemname) {
-        this.itemname = itemname;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-
-    @Transient
-    public Button getAction() {
-        return action;
-    }
-
-    public void setAction(Button action) {
-        this.action = action;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getItemid() {
@@ -90,37 +61,76 @@ public class StoreItem {
         this.itemid = itemid;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public String getItemname() {
+        return itemname;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
     }
 
+    public float getPriceperunit() {
+        return priceperunit;
+    }
 
-    public double getPurchasequantity() {
+    public void setPriceperunit(float priceperunit) {
+        this.priceperunit = priceperunit;
+    }
+
+    public Button getAction() {
+        return action;
+    }
+
+    public void setAction(Button action) {
+        this.action = action;
+    }
+
+    public float getAvailablequantity() {
+        return availablequantity;
+    }
+
+    public void setAvailablequantity(float availablequantity) {
+        this.availablequantity = availablequantity;
+    }
+
+    public float getPurchasequantity() {
         return purchasequantity;
     }
 
-    public void setPurchasequantity(double purchasequantity) {
+    public void setPurchasequantity(float purchasequantity) {
         this.purchasequantity = purchasequantity;
     }
 
-    public double getRemaining() {
-        return remaining;
+    public float getRemainingquantity() {
+        return remainingquantity;
     }
 
-    public void setRemaining(double remaining) {
-        this.remaining = remaining;
+    public void setRemainingquantity(float remainingquantity) {
+        this.remainingquantity = remainingquantity;
     }
 
-    public double getWeight() {
-        return weight;
+    public float getWeightofitme() {
+        return weightofitme;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setWeightofitme(float weightofitme) {
+        this.weightofitme = weightofitme;
+    }
+
+    public String getGroupname() {
+        return groupname;
+    }
+
+    public void setGroupname(String groupname) {
+        this.groupname = groupname;
+    }
+
+    public String getPrintedunit() {
+        return printedunit;
+    }
+
+    public void setPrintedunit(String printedunit) {
+        this.printedunit = printedunit;
     }
 
 
@@ -134,28 +144,4 @@ public class StoreItem {
         this.group = group;
     }
 
-    @Transient
-    public String getGroupname() {
-        return groupname;
-    }
-
-    public void setGroupname(String groupname) {
-        this.groupname = groupname;
-    }
-
-    public String getSellunit() {
-        return sellunit;
-    }
-
-    public void setSellunit(String sellunit) {
-        this.sellunit = sellunit;
-    }
-
-    public String getPrintedunit() {
-        return printedunit;
-    }
-
-    public void setPrintedunit(String printedunit) {
-        this.printedunit = printedunit;
-    }
 }

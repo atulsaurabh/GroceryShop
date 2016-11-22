@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import org.groceryshop.entity.UnitForSell;
-import org.groceryshop.model.AddItemModel;
+import org.groceryshop.model.ItemModel;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +25,9 @@ public class UnitForSellController {
             UnitForSell unitForSell = new UnitForSell();
             unitForSell.setUnitName(unitname.getText().toUpperCase());
             unitForSell.setDivisionFactor(Double.parseDouble(divisionfactor.getText()));
-            AddItemModel itemModel = new AddItemModel();
+            ItemModel itemModel = new ItemModel();
 
-            if (itemModel.createUnit(unitForSell)) {
+            if (itemModel.addGroup(unitForSell)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Successful");
                 alert.setContentText("Unit Added Successfully");

@@ -170,7 +170,7 @@ public class MainFrameController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/groups.fxml"));
             Pane pane = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Create Group");
+            stage.setTitle("Create Item Group");
             stage.setResizable(false);
 
             Scene scene = new Scene(pane);
@@ -187,11 +187,21 @@ public class MainFrameController {
 
 
     public void showUnitCreateForm(ActionEvent actionEvent) {
+        openWindow("/org/groceryshop/view/unit.fxml", "Create Unit");
+    }
+
+
+    public void openMeasurementGroupCreateDialog(ActionEvent event) {
+        openWindow("/org/groceryshop/view/measurementgroup.fxml", "Measurement Group");
+    }
+
+
+    private void openWindow(String window, String title) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/unit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(window));
             Pane pane = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Create Group");
+            stage.setTitle(title);
             stage.setResizable(false);
 
             Scene scene = new Scene(pane);

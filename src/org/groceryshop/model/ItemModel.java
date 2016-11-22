@@ -23,7 +23,7 @@ import java.util.logging.SimpleFormatter;
 /**
  * Created by atul_saurabh on 31/10/16.
  */
-public class AddItemModel {
+public class ItemModel extends Group<UnitForSell> {
 
     public boolean addNewItem(ObservableList<StoreItem> items, ProgressIndicator batch, ArrayList<Long> ids) {
         try {
@@ -53,7 +53,7 @@ public class AddItemModel {
             batch.setProgress(0);
 
          /* try {
-              Logger logger = Logger.getLogger(AddItemModel.class.getName());
+              Logger logger = Logger.getLogger(ItemModel.class.getName());
               System.out.println(sqle.getMessage());
               FileHandler fileHandler = new FileHandler(
                       getClass().getResource("/org/groceryshop/log/databaselog.log").getPath()
@@ -91,7 +91,7 @@ public class AddItemModel {
             return nameAndIds;
 
         } catch (Exception sqle) {
-            Logger.getLogger(AddItemModel.class.getName()).log(
+            Logger.getLogger(ItemModel.class.getName()).log(
                     Level.SEVERE,
                     "Unable to fetch items " + sqle.getMessage(),
                     sqle
@@ -102,7 +102,7 @@ public class AddItemModel {
                 session.close();
                 factory.close();
             } catch (Exception sqle) {
-                Logger.getLogger(AddItemModel.class.getName()).log(
+                Logger.getLogger(ItemModel.class.getName()).log(
                         Level.SEVERE,
                         "Unable to close database connection " + sqle.getMessage(),
                         sqle
@@ -111,25 +111,6 @@ public class AddItemModel {
         }
         return null;
     }
-
-
-    public boolean createUnit(UnitForSell unitForSell) {
-        try {
-
-            SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
-            Session session = factory.openSession();
-            session.getTransaction().begin();
-            session.persist(unitForSell);
-            session.getTransaction().commit();
-            session.close();
-            factory.close();
-            return true;
-        } catch (Exception e) {
-            Logger.getLogger(AddItemModel.class.getName()).log(Level.SEVERE, "Unable to add unit for sell " + e.getMessage(), e);
-        }
-        return false;
-    }
-
 
     public List<UnitForSell> getAllUnit(String unitName) {
         try {
@@ -145,11 +126,11 @@ public class AddItemModel {
             factory.close();
             return units;
         } catch (Exception e) {
-            Logger l = Logger.getLogger(AddItemModel.class.getName()); //
+            Logger l = Logger.getLogger(ItemModel.class.getName()); //
             try {
                 SimpleFormatter formatter = new SimpleFormatter();
 
-                FileHandler handler = new FileHandler(AddItemModel.class.getResource("/org/groceryshop/log/database.log").getPath(), true);
+                FileHandler handler = new FileHandler(ItemModel.class.getResource("/org/groceryshop/log/database.log").getPath(), true);
                 handler.setFormatter(formatter);
                 l.addHandler(handler);
 
@@ -164,4 +145,16 @@ public class AddItemModel {
         }
         return null;
     }
+
+   /* public String getSellUnitForItem(Long itemid)
+    {
+        SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
+        Session session = factory.openSession();
+        session.getTransaction().begin();
+        StoreItem item = session.find(StoreItem.class,itemid);
+        session.getTransaction().commit();
+        return item.getSellunit();
+    }*/
+
+
 }

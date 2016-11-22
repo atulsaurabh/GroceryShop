@@ -11,7 +11,7 @@ import org.groceryshop.entity.StoreItem;
 /**
  * Created by atul_saurabh on 2/11/16.
  */
-public class SellItemQuantityCell extends TableCell<StoreItem, Double> {
+public class SellItemQuantityCell extends TableCell<StoreItem, Float> {
     private TextField item;
 
     private TableView<StoreItem> datatable;
@@ -34,17 +34,17 @@ public class SellItemQuantityCell extends TableCell<StoreItem, Double> {
     }
 
     @Override
-    public void commitEdit(Double newValue) {
+    public void commitEdit(Float newValue) {
         int k = datatable.getFocusModel().getFocusedIndex();
         StoreItem i = datatable.getItems().get(k);
-        i.setQuantity(newValue);
+        i.setAvailablequantity(newValue);
         setText(item.getText());
         setGraphic(null);
     }
 
 
     @Override
-    protected void updateItem(Double item, boolean empty) {
+    protected void updateItem(Float item, boolean empty) {
         super.updateItem(item, empty);
         if (empty) {
             setText(null);
@@ -70,7 +70,7 @@ public class SellItemQuantityCell extends TableCell<StoreItem, Double> {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!newValue) {
                     try {
-                        commitEdit(Double.parseDouble(item.getText()));
+                        commitEdit(Float.parseFloat(item.getText()));
                     } catch (NumberFormatException ne) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setContentText("Kindly Enter a valid quantity\nEither it is blank or it is Non Number");

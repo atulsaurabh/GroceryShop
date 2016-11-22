@@ -15,7 +15,7 @@
                         <TableColumn id="iname" fx:id="iname" prefWidth="199.0" text="item Name"/>
                         <TableColumn fx:id="iweight" prefWidth="75.0" text="weight"/>
                         <TableColumn fx:id="itemUnit" prefWidth="129.0" text="printed unit"/>
-                        <TableColumn id="iprice" fx:id="iprice" prefWidth="120.0" text="price"/>
+                        <TableColumn id="iprice" fx:id="iprice" prefWidth="120.0" text="price/unit"/>
                         <TableColumn fx:id="iavailable" prefWidth="75.0" text="avaibale"/>
                         <TableColumn fx:id="iunit" prefWidth="75.0" text="sell unit"/>
                         <TableColumn fx:id="igroup" prefWidth="75.0" text="group"/>

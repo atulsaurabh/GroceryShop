@@ -13,6 +13,7 @@ public class ItemGroup {
 
     private long groupid;
     private String groupname;
+    private SellingUnitGroup sellingUnitGroup;
 
     private Collection<StoreItem> storeItems = new ArrayList<>();
 
@@ -42,5 +43,16 @@ public class ItemGroup {
 
     public void setStoreItems(Collection<StoreItem> storeItems) {
         this.storeItems = storeItems;
+    }
+
+
+    @OneToOne(targetEntity = SellingUnitGroup.class, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "sellingunitgroupid")
+    public SellingUnitGroup getSellingUnitGroup() {
+        return sellingUnitGroup;
+    }
+
+    public void setSellingUnitGroup(SellingUnitGroup sellingUnitGroup) {
+        this.sellingUnitGroup = sellingUnitGroup;
     }
 }

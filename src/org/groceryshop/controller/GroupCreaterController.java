@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import org.groceryshop.entity.ItemGroup;
-import org.groceryshop.model.GroupCreatorModel;
+import org.groceryshop.model.ItemGroupModel;
 
 /**
  * Created by atul_saurabh on 6/11/16.
@@ -15,7 +15,7 @@ public class GroupCreaterController {
     private TextField groupname;
 
     public void createGroup(ActionEvent event) {
-        GroupCreatorModel model = new GroupCreatorModel();
+        ItemGroupModel model = new ItemGroupModel();
         if (!model.isGroupExist(groupname.getText().toUpperCase())) {
             ItemGroup group = new ItemGroup();
             group.setGroupname(groupname.getText().toUpperCase());

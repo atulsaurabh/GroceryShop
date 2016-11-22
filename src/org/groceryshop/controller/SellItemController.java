@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.groceryshop.component.DeleteButton;
+import org.groceryshop.component.SelectedItemUnitCell;
 import org.groceryshop.component.SellItemNameCell;
 import org.groceryshop.component.SellItemQuantityCell;
 import org.groceryshop.entity.StoreItem;
@@ -70,7 +71,7 @@ public class SellItemController implements ItemController {
                     sellitemtable.getSelectionModel().selectNext();
                     TablePosition pos = sellitemtable.getFocusModel().getFocusedCell();
                     sellitemtable.edit(pos.getRow(), pos.getTableColumn());
-                    if (pos.getColumn() == 4) {
+                    if (pos.getColumn() == 5) {
                         StoreItem i = new StoreItem();
                         i.setAction(DeleteButton.getDeleteButton(sellitemtable));
                         data.add(i);
@@ -85,6 +86,7 @@ public class SellItemController implements ItemController {
         quantity.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("quantity"));
         price.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("price"));
         action.setCellValueFactory(new PropertyValueFactory<StoreItem, Button>("action"));
+        sellunit.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("sellunit"));
         itemname.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
             public TableCell call(TableColumn param) {
@@ -97,7 +99,12 @@ public class SellItemController implements ItemController {
                 return new SellItemQuantityCell(sellitemtable);
             }
         });
-
+        sellunit.setCellFactory(new Callback<TableColumn, TableCell>() {
+            @Override
+            public TableCell call(TableColumn param) {
+                return new SelectedItemUnitCell(sellitemtable, itemids);
+            }
+        });
         StoreItem i = new StoreItem();
         i.setAction(DeleteButton.getDeleteButton(sellitemtable));
         data.add(i);

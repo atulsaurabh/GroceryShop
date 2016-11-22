@@ -36,7 +36,7 @@ public class ItemPriceCell extends TableCell<StoreItem, Float> {
     public void commitEdit(Float newValue) {
         int k = datatable.getFocusModel().getFocusedIndex();
         StoreItem i = datatable.getItems().get(k);
-        i.setPrice(newValue);
+        i.setAvailablequantity(newValue);
         setText(item.getText());
         setGraphic(null);
     }

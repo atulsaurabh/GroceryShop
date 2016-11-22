@@ -11,7 +11,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.groceryshop.entity.StoreItem;
 import org.groceryshop.entity.UnitForSell;
-import org.groceryshop.model.AddItemModel;
+import org.groceryshop.model.ItemModel;
 
 /**
  * Created by atul_saurabh on 31/10/16.
@@ -47,7 +47,7 @@ public class ItemUnitCell extends TableCell<StoreItem, String> {
         StoreItem i = datatable.getItems().get(k);
         switch (fieldName) {
             case "unit":
-                i.setSellunit(newValue);
+                //i.get
                 break;
             case "itemunit":
                 i.setPrintedunit(newValue);
@@ -80,7 +80,7 @@ public class ItemUnitCell extends TableCell<StoreItem, String> {
     private void createItem() {
         item = new TextField();
         AutoCompletionBinding t = TextFields.bindAutoCompletion(item, t1 -> {
-            return new AddItemModel().getAllUnit(item.getText().toUpperCase());
+            return new ItemModel().getAllUnit(item.getText().toUpperCase());
         }, new StringConverter<UnitForSell>() {
             @Override
             public String toString(UnitForSell object) {

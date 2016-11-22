@@ -1,7 +1,6 @@
 package org.groceryshop.model;
 
 import javafx.scene.control.ToggleGroup;
-import org.groceryshop.entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jetbrains.annotations.Nullable;
@@ -16,9 +15,9 @@ import java.util.logging.Logger;
 /**
  * Created by atul_saurabh on 31/10/16.
  */
-public class AddCustomer {
+public class Customer {
 
-    public AddCustomer() {
+    public Customer() {
     }
 
     public static String getNextAccountNumber() {
@@ -26,9 +25,9 @@ public class AddCustomer {
             SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
             Session session = factory.openSession();
             session.getTransaction().begin();
-            List<Customer> list = session.createCriteria(Customer.class).list();
+            List<org.groceryshop.entity.Customer> list = session.createCriteria(org.groceryshop.entity.Customer.class).list();
             if (!list.isEmpty()) {
-                Customer c = list.get(list.size() - 1);
+                org.groceryshop.entity.Customer c = list.get(list.size() - 1);
                 String[] s = c.getAccountnumber().split("-");
                 String nextAccountNumber = "cust-" + (Long.parseLong(s[1]) + 1);
                 session.close();
@@ -39,7 +38,7 @@ public class AddCustomer {
             }
 
         } catch (Exception sqle) {
-            Logger.getLogger(AddCustomer.class.getName()).log(
+            Logger.getLogger(Customer.class.getName()).log(
                     Level.SEVERE,
                     "Unable to fetch next available key " + sqle.getMessage(),
                     sqle
@@ -48,7 +47,7 @@ public class AddCustomer {
         return null;
     }
 
-    public boolean addCustomer(Customer customer) {
+    public boolean addCustomer(org.groceryshop.entity.Customer customer) {
         try {
             SessionFactory sessionFactory = DatabaseConnection.HibernateUtil.openSessionFactory();
             Session session = sessionFactory.openSession();
@@ -59,7 +58,7 @@ public class AddCustomer {
             sessionFactory.close();
             return true;
         } catch (Exception sqle) {
-            Logger.getLogger(AddCustomer.class.getName()).log(
+            Logger.getLogger(Customer.class.getName()).log(
                     Level.SEVERE,
                     "Unable to add new customer " + sqle.getMessage(),
                     sqle
@@ -70,7 +69,7 @@ public class AddCustomer {
     }
 
     @Nullable
-    public List<Customer> getAllCustomers(String nameToSearch) {
+    public List<org.groceryshop.entity.Customer> getAllCustomers(String nameToSearch) {
         ToggleGroup toggleGroup = new ToggleGroup();
         try {
             /*Connection connection = DatabaseConnection.getDatabaseConnection();
@@ -114,15 +113,15 @@ public class AddCustomer {
             Session session = factory.openSession();
             session.getTransaction().begin();
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Customer> criteriaQuery = criteriaBuilder.createQuery(Customer.class);
-            Root<Customer> customerRoot = criteriaQuery.from(Customer.class);
+            CriteriaQuery<org.groceryshop.entity.Customer> criteriaQuery = criteriaBuilder.createQuery(org.groceryshop.entity.Customer.class);
+            Root<org.groceryshop.entity.Customer> customerRoot = criteriaQuery.from(org.groceryshop.entity.Customer.class);
             criteriaQuery.select(customerRoot);
             criteriaQuery.where(criteriaBuilder.like(customerRoot.get("customername"), nameToSearch + "%"));
-            List<Customer> customerlist = session.createQuery(criteriaQuery).getResultList();
+            List<org.groceryshop.entity.Customer> customerlist = session.createQuery(criteriaQuery).getResultList();
             session.getTransaction().commit();
             return customerlist;
         } catch (Exception sqle) {
-            Logger.getLogger(AddCustomer.class.getName()).log(
+            Logger.getLogger(Customer.class.getName()).log(
                     Level.SEVERE,
                     "Unable to fetch customers " + sqle.getMessage(),
                     sqle

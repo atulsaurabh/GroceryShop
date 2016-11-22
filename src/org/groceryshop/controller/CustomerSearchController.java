@@ -12,8 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.groceryshop.entity.Customer;
-import org.groceryshop.model.AddCustomer;
+import org.groceryshop.model.Customer;
 
 import java.util.List;
 
@@ -37,16 +36,16 @@ public class CustomerSearchController {
     @FXML
     private TableColumn details;
 
-    private ObservableList<Customer> customers = FXCollections.observableArrayList();
+    private ObservableList<org.groceryshop.entity.Customer> customers = FXCollections.observableArrayList();
 
 
     public void initialize() {
 
-        customerid.setCellValueFactory(new PropertyValueFactory<Customer, String>("accountnumber"));
-        customername.setCellValueFactory(new PropertyValueFactory<Customer, String>("customername"));
-        mobilenumber.setCellValueFactory(new PropertyValueFactory<Customer, String>("mobilenumber"));
-        address.setCellValueFactory(new PropertyValueFactory<Customer, String>("address"));
-        details.setCellValueFactory(new PropertyValueFactory<Customer, Hyperlink>("details"));
+        customerid.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, String>("accountnumber"));
+        customername.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, String>("customername"));
+        mobilenumber.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, String>("mobilenumber"));
+        address.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, String>("address"));
+        details.setCellValueFactory(new PropertyValueFactory<org.groceryshop.entity.Customer, Hyperlink>("details"));
 
         customertable.setItems(customers);
     }
@@ -55,9 +54,9 @@ public class CustomerSearchController {
     public void searchCustomer(ActionEvent event) {
         customers.clear();
         String nameToSearch = searchbox.getText();
-        AddCustomer customer = new AddCustomer();
-        List<Customer> customerlist = customer.getAllCustomers(nameToSearch);
-        for (Customer c : customerlist) {
+        Customer customer = new Customer();
+        List<org.groceryshop.entity.Customer> customerlist = customer.getAllCustomers(nameToSearch);
+        for (org.groceryshop.entity.Customer c : customerlist) {
             Hyperlink hyperlink = new Hyperlink("Details");
             hyperlink.setGraphic(new ImageView(new Image("/org/groceryshop/image/details_1.png")));
             hyperlink.setOnAction(new EventHandler<ActionEvent>() {

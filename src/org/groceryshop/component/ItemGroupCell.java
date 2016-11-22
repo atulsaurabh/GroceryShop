@@ -11,7 +11,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.groceryshop.controller.ItemController;
 import org.groceryshop.entity.StoreItem;
-import org.groceryshop.model.GroupCreatorModel;
+import org.groceryshop.model.ItemGroupModel;
 
 /**
  * Created by atul_saurabh on 6/11/16.
@@ -71,7 +71,7 @@ public class ItemGroupCell extends TableCell<StoreItem, String> {
         item = new TextField();
 
         AutoCompletionBinding t = TextFields.bindAutoCompletion(item, t1 -> {
-                    return new GroupCreatorModel().getAllGroups(t1.getUserText().toUpperCase());
+            return new ItemGroupModel().getAllGroups(t1.getUserText().toUpperCase());
                 }, new StringConverter<String>() {
                     @Override
                     public String toString(String object) {
