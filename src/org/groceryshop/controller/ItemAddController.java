@@ -46,6 +46,12 @@ public class ItemAddController implements ItemController {
     @FXML
     private TableColumn itemUnit;
 
+    @FXML
+    private TableColumn isellprice;
+
+    @FXML
+    private TableColumn icost;
+
     private ObservableList<StoreItem> data = FXCollections.observableArrayList();
 
     private int srno = 0;
@@ -64,6 +70,8 @@ public class ItemAddController implements ItemController {
         iavailable.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("availablequantity"));
         igroup.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("groupname"));
         itemUnit.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("printedunit"));
+        isellprice.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("sellingprice"));
+        icost.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("purchasepriceperunit"));
         iname.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
             public TableCell call(TableColumn param) {

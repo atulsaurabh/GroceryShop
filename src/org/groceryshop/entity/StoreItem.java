@@ -16,9 +16,9 @@ public class StoreItem {
     private int srno;
     private long itemid;
     private String itemname;
-    private float mrp_priceperunit;
-    private float sellingprice;
-    private float purchasepriceperunit;
+    private float mrp_priceperunit;  // mrp on printed on the item
+    private float sellingprice;  // price on which item to be sold
+    private float purchasepriceperunit;  // Cost of the price per unit
     private Button action;
     private float availablequantity;
     private float purchasequantity;
