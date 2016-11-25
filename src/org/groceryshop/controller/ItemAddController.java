@@ -88,6 +88,20 @@ public class ItemAddController implements ItemController {
             }
         });
 
+        isellprice.setCellFactory(new Callback<TableColumn, TableCell>() {
+            @Override
+            public TableCell call(TableColumn param) {
+                ItemPriceCell cell = new ItemPriceCell(datatable, "sell");
+                return cell;
+            }
+        });
+        icost.setCellFactory(new Callback<TableColumn, TableCell>() {
+            @Override
+            public TableCell call(TableColumn param) {
+                ItemPriceCell cell = new ItemPriceCell(datatable, "purchase");
+                return cell;
+            }
+        });
 
         iunit.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
