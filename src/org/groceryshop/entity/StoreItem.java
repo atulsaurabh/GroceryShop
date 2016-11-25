@@ -18,6 +18,7 @@ public class StoreItem {
     private String itemname;
     private float mrp_priceperunit;
     private float sellingprice;
+    private float purchasepriceperunit;
     private Button action;
     private float availablequantity;
     private float purchasequantity;
@@ -153,4 +154,11 @@ public class StoreItem {
         this.group = group;
     }
 
+    public float getPurchasepriceperunit() {
+        return purchasepriceperunit;
+    }
+
+    public void setPurchasepriceperunit(float purchasepriceperunit) {
+        this.purchasepriceperunit = purchasepriceperunit;
+    }
 }

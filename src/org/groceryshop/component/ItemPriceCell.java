@@ -46,6 +46,8 @@ public class ItemPriceCell extends TableCell<StoreItem, Float> {
             case "sell":
                 i.setSellingprice(newValue);
                 break;
+            case "purchase":
+                i.setPurchasepriceperunit(newValue);
         }
 
         setText(item.getText());

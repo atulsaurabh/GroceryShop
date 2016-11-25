@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml/1" id="tablescrollpane" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="834.0"
-            xmlns="http://javafx.com/javafx/8" fx:controller="org.groceryshop.controller.ItemAddController">
+            xmlns="http://javafx.com/javafx/8.0.65" fx:controller="org.groceryshop.controller.ItemAddController">
     <content>
         <AnchorPane id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="833.0">
             <children>
@@ -15,7 +15,9 @@
                         <TableColumn id="iname" fx:id="iname" prefWidth="199.0" text="item Name"/>
                         <TableColumn fx:id="iweight" prefWidth="75.0" text="weight"/>
                         <TableColumn fx:id="itemUnit" prefWidth="129.0" text="printed unit"/>
-                        <TableColumn id="iprice" fx:id="iprice" prefWidth="120.0" text="price/unit"/>
+                        <TableColumn id="iprice" fx:id="iprice" prefWidth="120.0" text="mrp/unit"/>
+                        <TableColumn prefWidth="75.0" text="selling price"/>
+                        <TableColumn prefWidth="75.0" text="cost/unit"/>
                         <TableColumn fx:id="iavailable" prefWidth="75.0" text="avaibale"/>
                         <TableColumn fx:id="iunit" prefWidth="75.0" text="sell unit"/>
                         <TableColumn fx:id="igroup" prefWidth="75.0" text="group"/>
