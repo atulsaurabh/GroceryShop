@@ -1,5 +1,8 @@
 package org.groceryshop.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +12,7 @@ import java.util.Collection;
  */
 
 @Entity
+@Table(name = "itemgroup")
 public class ItemGroup {
 
     private long groupid;
@@ -36,7 +40,8 @@ public class ItemGroup {
     }
 
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     public Collection<StoreItem> getStoreItems() {
         return storeItems;
     }
@@ -55,4 +60,8 @@ public class ItemGroup {
     public void setSellingUnitGroup(SellingUnitGroup sellingUnitGroup) {
         this.sellingUnitGroup = sellingUnitGroup;
     }
+
+
 }
+
+

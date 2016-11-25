@@ -1,5 +1,8 @@
 package org.groceryshop.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,7 +35,8 @@ public class SellingUnitGroup {
         this.groupname = groupname;
     }
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     public Collection<UnitForSell> getSells() {
         return sells;
     }

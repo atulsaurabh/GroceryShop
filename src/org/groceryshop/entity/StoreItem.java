@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "StoreItem")
+@Table(name = "storeitem")
 public class StoreItem {
 
     private int srno;
@@ -77,6 +77,7 @@ public class StoreItem {
         this.priceperunit = priceperunit;
     }
 
+    @Transient
     public Button getAction() {
         return action;
     }
@@ -134,8 +135,7 @@ public class StoreItem {
     }
 
 
-    @ManyToOne
-    @JoinColumn(name = "groupid")
+    @ManyToOne(cascade = CascadeType.ALL)
     public ItemGroup getGroup() {
         return group;
     }

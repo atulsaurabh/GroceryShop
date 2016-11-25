@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml/1" id="tablescrollpane" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="834.0"
-            xmlns="http://javafx.com/javafx/8" fx:controller="org.groceryshop.controller.TableController">
+            xmlns="http://javafx.com/javafx/8" fx:controller="org.groceryshop.controller.ItemAddController">
     <content>
         <AnchorPane id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="833.0">
             <children>

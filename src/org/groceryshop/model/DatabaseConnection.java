@@ -1,9 +1,7 @@
 package org.groceryshop.model;
 
 import org.groceryshop.entity.Customer;
-import org.groceryshop.entity.ItemGroup;
-import org.groceryshop.entity.StoreItem;
-import org.groceryshop.entity.UnitForSell;
+import org.groceryshop.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -68,6 +66,7 @@ public class DatabaseConnection {
             configuration.addAnnotatedClass(StoreItem.class);
             configuration.addAnnotatedClass(ItemGroup.class);
             configuration.addAnnotatedClass(UnitForSell.class);
+            configuration.addAnnotatedClass(SellingUnitGroup.class);
             StandardServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(registry);
             return sessionFactory;

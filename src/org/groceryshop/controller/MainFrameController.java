@@ -167,7 +167,7 @@ public class MainFrameController {
 
     public void openCreateGroupWindow(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/groups.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/itemgroups.fxml"));
             Pane pane = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Create Item Group");
@@ -179,7 +179,7 @@ public class MainFrameController {
 
         } catch (IOException ioexception) {
             Logger.getLogger(MainFrameController.class.getName()).log(
-                    Level.SEVERE, "unable to load view groups.fxml",
+                    Level.SEVERE, "unable to load view itemgroups.fxml",
                     ioexception
             );
         }

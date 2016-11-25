@@ -18,7 +18,7 @@
                                                     shortcut="UP"/>
                             </accelerator>
                         </MenuItem>
-                        <MenuItem onAction="#openCreateGroupWindow" text="Create Group">
+                        <MenuItem onAction="#openCreateGroupWindow" text="Create Item Group">
                             <accelerator>
                                 <KeyCodeCombination alt="DOWN" code="G" control="DOWN" meta="UP" shift="UP"
                                                     shortcut="UP"/>

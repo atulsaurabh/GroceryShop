@@ -3,11 +3,13 @@ package org.groceryshop.model;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ProgressIndicator;
 import org.groceryshop.entity.ItemGroup;
+import org.groceryshop.entity.SellingUnitGroup;
 import org.groceryshop.entity.StoreItem;
 import org.groceryshop.entity.UnitForSell;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -146,15 +148,15 @@ public class ItemModel extends Group<UnitForSell> {
         return null;
     }
 
-   /* public String getSellUnitForItem(Long itemid)
-    {
-        SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
-        Session session = factory.openSession();
-        session.getTransaction().begin();
-        StoreItem item = session.find(StoreItem.class,itemid);
-        session.getTransaction().commit();
-        return item.getSellunit();
-    }*/
+    public List<SellingUnitGroup> getAllItemGroup() {
+        SessionFactory sessionFactory = DatabaseConnection.HibernateUtil.openSessionFactory();
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("FROM org.groceryshop.entity.SellingUnitGroup");
+        List<SellingUnitGroup> groups = query.getResultList();
+        session.close();
+        sessionFactory.close();
+        return groups;
 
+    }
 
 }

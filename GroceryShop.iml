@@ -19,5 +19,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="Hibernate5" level="application" />
+    <orderEntry type="library" name="all-spring-hibernate" level="application" />
   </component>
 </module>

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by bipul.saurabh on 10/27/16.
  */
-public class TableController implements ItemController {
+public class ItemAddController implements ItemController {
 
     private static int TAB_COUNT = 0;
     @FXML
@@ -49,7 +49,7 @@ public class TableController implements ItemController {
     private ObservableList<StoreItem> data = FXCollections.observableArrayList();
 
     private int srno = 0;
-    private TableController me = this;
+    private ItemAddController me = this;
     private ArrayList<Long> ids = new ArrayList<>();
 
     public void initialize() {
@@ -57,13 +57,13 @@ public class TableController implements ItemController {
         datatable.setEditable(true);
         sno.setCellValueFactory(new PropertyValueFactory<StoreItem, Integer>("srno"));
         iname.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("itemname"));
-        iprice.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("price"));
+        iprice.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("priceperunit"));
         iunit.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("sellunit"));
         action.setCellValueFactory(new PropertyValueFactory<StoreItem, Button>("action"));
-        iweight.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("weight"));
-        iavailable.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("quantity"));
+        iweight.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("weightofitme"));
+        iavailable.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("availablequantity"));
         igroup.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("groupname"));
-        itemUnit.setCellValueFactory(new PropertyValueFactory<StoreItem, Double>("printedunit"));
+        itemUnit.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("printedunit"));
         iname.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
             public TableCell call(TableColumn param) {

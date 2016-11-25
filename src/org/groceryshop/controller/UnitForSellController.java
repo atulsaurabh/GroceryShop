@@ -3,9 +3,11 @@ package org.groceryshop.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import org.groceryshop.entity.SellingUnitGroup;
 import org.groceryshop.entity.UnitForSell;
-import org.groceryshop.model.ItemModel;
+import org.groceryshop.model.MeasurementGroupModel;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,15 +21,29 @@ public class UnitForSellController {
     @FXML
     private TextField divisionfactor;
 
+    @FXML
+    private ComboBox<String> measurementgroup;
+
+    private String groupChoice;
+
+    public void initialize() {
+        String[] groupsName = new MeasurementGroupModel().getAllMeasurementGroup();
+        measurementgroup.getItems().addAll(groupsName);
+
+    }
 
     public void addUnit(ActionEvent actionEvent) {
         try {
+            String measurementgroupname = measurementgroup.getSelectionModel().getSelectedItem();
+            SellingUnitGroup grp = new MeasurementGroupModel().getSellingUnitByName(measurementgroupname);
             UnitForSell unitForSell = new UnitForSell();
+            unitForSell.setGroup(grp);
             unitForSell.setUnitName(unitname.getText().toUpperCase());
             unitForSell.setDivisionFactor(Double.parseDouble(divisionfactor.getText()));
-            ItemModel itemModel = new ItemModel();
+            grp.getSells().add(unitForSell);
+            MeasurementGroupModel model = new MeasurementGroupModel();
 
-            if (itemModel.addGroup(unitForSell)) {
+            if (model.updateGroup(grp)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Successful");
                 alert.setContentText("Unit Added Successfully");

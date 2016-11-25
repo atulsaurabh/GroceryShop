@@ -1,9 +1,11 @@
 package org.groceryshop.model;
 
 import org.groceryshop.entity.ItemGroup;
+import org.groceryshop.entity.SellingUnitGroup;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -69,5 +71,41 @@ public class ItemGroupModel extends Group<ItemGroup> {
         return grps;
     }
 
+    public SellingUnitGroup getSellingUnitByName(String name) {
+        SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
+        Session session = factory.openSession();
+        session.getTransaction().begin();
+        String hQL = "FROM org.groceryshop.entity.SellingUnitGroup AS sug where sug.groupname = :g_name";
+        Query query = session.createQuery(hQL);
+        query.setParameter("g_name", name);
+        SellingUnitGroup s = (SellingUnitGroup) query.getSingleResult();
+        session.getTransaction().commit();
+        session.close();
+        factory.close();
+        return s;
+
+    }
+
+
+    public boolean mergeGroup(ItemGroup group) {
+        try {
+            SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
+            Session session = factory.openSession();
+            session.getTransaction().begin();
+            session.merge(group);
+            session.getTransaction().commit();
+            session.close();
+            factory.close();
+            return true;
+        } catch (Exception e) {
+
+            Logger.getLogger(ItemGroupModel.class.getName()).log(
+                    Level.SEVERE,
+                    "Unable to add group " + e.getMessage(),
+                    e
+            );
+        }
+        return false;
+    }
 
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by atul_saurabh on 10/11/16.
  */
 @Entity
-@Table(name = "UnitForSell")
+@Table(name = "unitforsell")
 public class UnitForSell {
     private String unitName;
     private double divisionFactor;
