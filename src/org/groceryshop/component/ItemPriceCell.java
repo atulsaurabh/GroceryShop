@@ -2,10 +2,11 @@ package org.groceryshop.component;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import org.groceryshop.entity.StoreItem;
-
-import java.util.Optional;
 
 /**
  * Created by atul_saurabh on 31/10/16.
@@ -83,14 +84,23 @@ public class ItemPriceCell extends TableCell<StoreItem, Float> {
                     try {
                         float price = Float.parseFloat(item.getText());
                         if (price == 0) {
-                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                            alert.setTitle("Confirm");
-                            alert.setContentText("Are you sure that price is 0");
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.get() == ButtonType.OK)
-                                commitEdit(0.0f);
-                            else
-                                datatable.getSelectionModel().selectPrevious();
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Price Error");
+                            switch (pricefor) {
+                                case "mrp":
+                                    alert.setContentText("MRP Can Not Be 0");
+                                    break;
+                                case "sell":
+                                    alert.setContentText("Selling Price Can Not Be 0");
+                                    break;
+                                case "purchase":
+                                    alert.setContentText("Selling Price Can Not Be 0");
+                                    break;
+
+                            }
+
+                            alert.showAndWait();
+                            datatable.getSelectionModel().selectPrevious();
                         } else
                             commitEdit(price);
                     } catch (Exception e) {

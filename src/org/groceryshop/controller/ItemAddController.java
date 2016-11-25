@@ -153,7 +153,7 @@ public class ItemAddController implements ItemController {
                 if (event.getCode() == KeyCode.TAB) {
                     datatable.getSelectionModel().selectNext();
                     TablePosition pos = datatable.getFocusModel().getFocusedCell();
-                    if (pos.getColumn() == 8) {
+                    if (pos.getColumn() == 10) {
                         TAB_COUNT++;
                         if (TAB_COUNT == 2) {
                             StoreItem p = (StoreItem) datatable.getItems().get(pos.getRow());
