@@ -16,7 +16,8 @@ public class StoreItem {
     private int srno;
     private long itemid;
     private String itemname;
-    private float priceperunit;
+    private float mrp_priceperunit;
+    private float sellingprice;
     private Button action;
     private float availablequantity;
     private float purchasequantity;
@@ -38,7 +39,7 @@ public class StoreItem {
     public StoreItem(int s, String item, float p, Button checkBox) {
         srno = s;
         itemname = item;
-        priceperunit = p;
+        mrp_priceperunit = p;
         action = checkBox;
     }
 
@@ -69,12 +70,20 @@ public class StoreItem {
         this.itemname = itemname;
     }
 
-    public float getPriceperunit() {
-        return priceperunit;
+    public float getMrp_priceperunit() {
+        return mrp_priceperunit;
     }
 
-    public void setPriceperunit(float priceperunit) {
-        this.priceperunit = priceperunit;
+    public void setMrp_priceperunit(float mrp_priceperunit) {
+        this.mrp_priceperunit = mrp_priceperunit;
+    }
+
+    public float getSellingprice() {
+        return sellingprice;
+    }
+
+    public void setSellingprice(float sellingprice) {
+        this.sellingprice = sellingprice;
     }
 
     @Transient

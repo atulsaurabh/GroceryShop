@@ -57,7 +57,7 @@ public class ItemAddController implements ItemController {
         datatable.setEditable(true);
         sno.setCellValueFactory(new PropertyValueFactory<StoreItem, Integer>("srno"));
         iname.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("itemname"));
-        iprice.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("priceperunit"));
+        iprice.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("mrp_priceperunit"));
         iunit.setCellValueFactory(new PropertyValueFactory<StoreItem, String>("sellunit"));
         action.setCellValueFactory(new PropertyValueFactory<StoreItem, Button>("action"));
         iweight.setCellValueFactory(new PropertyValueFactory<StoreItem, Float>("weightofitme"));
@@ -75,7 +75,7 @@ public class ItemAddController implements ItemController {
         iprice.setCellFactory(new Callback<TableColumn, TableCell>() {
             @Override
             public TableCell call(TableColumn param) {
-                ItemPriceCell cell = new ItemPriceCell(datatable);
+                ItemPriceCell cell = new ItemPriceCell(datatable, "mrp");
                 return cell;
             }
         });

@@ -14,9 +14,12 @@ public class ItemPriceCell extends TableCell<StoreItem, Float> {
     private TextField item;
 
     private TableView<StoreItem> datatable;
+    private String pricefor;
 
-    public ItemPriceCell(TableView<StoreItem> datatable) {
+    public ItemPriceCell(TableView<StoreItem> datatable, String pricefor) {
+
         this.datatable = datatable;
+        this.pricefor = pricefor;
     }
 
     @Override
@@ -36,7 +39,15 @@ public class ItemPriceCell extends TableCell<StoreItem, Float> {
     public void commitEdit(Float newValue) {
         int k = datatable.getFocusModel().getFocusedIndex();
         StoreItem i = datatable.getItems().get(k);
-        i.setAvailablequantity(newValue);
+        switch (pricefor) {
+            case "mrp":
+                i.setMrp_priceperunit(newValue);
+                break;
+            case "sell":
+                i.setSellingprice(newValue);
+                break;
+        }
+
         setText(item.getText());
         setGraphic(null);
     }
