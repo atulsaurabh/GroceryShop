@@ -36,6 +36,16 @@
                                                     shortcut="UP"/>
                             </accelerator>
                         </MenuItem>
+                        <Menu mnemonicParsing="false" text="Supplier">
+                            <items>
+                                <MenuItem onAction="#openSupplierForm" text="Add Supplier">
+                                    <accelerator>
+                                        <KeyCodeCombination alt="DOWN" code="C" control="DOWN" meta="UP" shift="UP"
+                                                            shortcut="UP"/>
+                                    </accelerator>
+                                </MenuItem>
+                    </items>
+                        </Menu>
                     </items>
                     <accelerator>
                         <KeyCodeCombination alt="DOWN" code="S" control="UP" meta="UP" shift="UP" shortcut="UP"/>

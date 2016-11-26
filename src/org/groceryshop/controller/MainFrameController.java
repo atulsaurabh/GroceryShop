@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -199,7 +200,7 @@ public class MainFrameController {
     private void openWindow(String window, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(window));
-            Pane pane = loader.load();
+            Parent pane = loader.load();
             Stage stage = new Stage();
             stage.setTitle(title);
             stage.setResizable(false);
@@ -214,5 +215,10 @@ public class MainFrameController {
                     ioexception
             );
         }
+    }
+
+
+    public void openSupplierForm(ActionEvent actionEvent) {
+        openWindow("/org/groceryshop/view/supplier.fxml", "Create Supplier");
     }
 }

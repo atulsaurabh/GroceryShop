@@ -3,6 +3,8 @@ package org.groceryshop.entity;
 import javafx.scene.control.Button;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 /**
@@ -27,6 +29,7 @@ public class StoreItem {
     private String groupname;
     private String printedunit;
 
+    private Collection<Supplier> suppliers = new ArrayList<>();
     private ItemGroup group;
     public StoreItem(int s, Button button) {
         srno = s;
@@ -160,5 +163,15 @@ public class StoreItem {
 
     public void setPurchasepriceperunit(float purchasepriceperunit) {
         this.purchasepriceperunit = purchasepriceperunit;
+    }
+
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "suppliedname")
+    public Collection<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
+    public void setSuppliers(Collection<Supplier> suppliers) {
+        this.suppliers = suppliers;
     }
 }
