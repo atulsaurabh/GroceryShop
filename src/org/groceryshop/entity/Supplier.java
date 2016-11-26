@@ -17,6 +17,8 @@ public class Supplier {
 
     private Collection<StoreItem> suppliedname = new ArrayList<>();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getSupplierid() {
         return supplierid;
     }

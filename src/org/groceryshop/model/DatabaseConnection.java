@@ -59,6 +59,7 @@ public class DatabaseConnection {
                     .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/grocery")
                     .setProperty("hibernate.connection.username", "root")
                     .setProperty("hibernate.connection.password", "mysql")
+                    .setProperty("hibernate.show_sql", "true")
                     .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")
                     .setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver")
                     .setProperty("hibernate.hbm2ddl.auto", "update");
@@ -67,6 +68,7 @@ public class DatabaseConnection {
             configuration.addAnnotatedClass(ItemGroup.class);
             configuration.addAnnotatedClass(UnitForSell.class);
             configuration.addAnnotatedClass(SellingUnitGroup.class);
+            configuration.addAnnotatedClass(Supplier.class);
             StandardServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(registry);
             return sessionFactory;
