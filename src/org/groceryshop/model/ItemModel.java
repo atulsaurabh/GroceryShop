@@ -159,4 +159,14 @@ public class ItemModel extends Group<UnitForSell> {
 
     }
 
+    public List<StoreItem> getAllItems() {
+        SessionFactory sessionFactory = DatabaseConnection.HibernateUtil.openSessionFactory();
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("FROM org.groceryshop.entity.StoreItem");
+        List<StoreItem> storeItems = query.getResultList();
+        session.close();
+        sessionFactory.close();
+        return storeItems;
+    }
+
 }
