@@ -13,9 +13,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import org.groceryshop.entity.StoreItem;
 import org.groceryshop.model.ItemModel;
 
@@ -31,7 +32,7 @@ public class SupplierController implements MapComponentInitializedListener {
     @FXML
     private TextField mobilenumber;
     @FXML
-    private TextArea supplieraddress;
+    private TextField supplieraddress;
     @FXML
     private ListView<String> items;
 
@@ -52,9 +53,6 @@ public class SupplierController implements MapComponentInitializedListener {
             System.out.println(s.getItemname());
             items.getItems().add(s.getItemname());
         }
-
-        items.getItems().add("123");
-        items.getItems().add("1234");
 
         items.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         items.refresh();
@@ -93,8 +91,8 @@ public class SupplierController implements MapComponentInitializedListener {
 
     }
 
-    public void findAddress(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
+    public void findAddress(ActionEvent keyEvent) {
+
             service.geocode(addressProperty.get(), (GeocodingResult[] results, GeocoderStatus status) -> {
                 lati_longi = null;
                 if (status == GeocoderStatus.ZERO_RESULTS) {
@@ -115,5 +113,4 @@ public class SupplierController implements MapComponentInitializedListener {
                 }
             });
         }
-    }
 }
