@@ -13,14 +13,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.stage.Stage;
 import org.groceryshop.entity.StoreItem;
 import org.groceryshop.model.ItemModel;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -53,10 +58,8 @@ public class SupplierController implements MapComponentInitializedListener {
 
         ObservableList<String> lst = FXCollections.observableArrayList();
         for (StoreItem s : storeItems) {
-            // System.out.println(s.getItemname());
             items.getItems().add(s.getItemname());
         }
-        items.getItems().addAll("123");
         items.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         items.refresh();
         googleMapView.addMapInializedListener(this);
@@ -71,7 +74,28 @@ public class SupplierController implements MapComponentInitializedListener {
 
 
     public void openItemAddBox(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/itemaddtosupplier.fxml"));
+            Parent parent = loader.load();
+            ItemAddToSupplierController controller = loader.getController();
+            controller.setSupplierController(this);
+            Stage stage = new Stage();
+            Scene scene = new Scene(parent);
+            stage.setTitle("Add Item");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setAlwaysOnTop(true);
+            stage.showAndWait();
 
+        } catch (IOException io) {
+
+        }
+
+    }
+
+
+    public void setItems(String item) {
+        items.getItems().add(item);
     }
 
 
