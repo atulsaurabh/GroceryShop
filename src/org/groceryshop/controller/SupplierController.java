@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldListCell;
 import org.groceryshop.entity.StoreItem;
 import org.groceryshop.model.ItemModel;
 
@@ -46,14 +47,16 @@ public class SupplierController implements MapComponentInitializedListener {
     private StringProperty addressProperty = new SimpleStringProperty();
 
     public void initialize() {
+        items.setEditable(true);
+        items.setCellFactory(TextFieldListCell.forListView());
         List<StoreItem> storeItems = new ItemModel().getAllItems();
 
         ObservableList<String> lst = FXCollections.observableArrayList();
         for (StoreItem s : storeItems) {
-            System.out.println(s.getItemname());
+            // System.out.println(s.getItemname());
             items.getItems().add(s.getItemname());
         }
-
+        items.getItems().addAll("123");
         items.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         items.refresh();
         googleMapView.addMapInializedListener(this);
@@ -63,6 +66,11 @@ public class SupplierController implements MapComponentInitializedListener {
 
 
     public void createSupplier(ActionEvent event) {
+
+    }
+
+
+    public void openItemAddBox(ActionEvent event) {
 
     }
 
