@@ -9,23 +9,12 @@ import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import org.groceryshop.entity.StoreItem;
-import org.groceryshop.model.ItemModel;
-
-import java.io.IOException;
-import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import org.groceryshop.entity.Supplier;
+import org.groceryshop.model.SupplierModel;
 
 /**
  * Created by bipul on 26/11/16.
@@ -38,16 +27,13 @@ public class SupplierController implements MapComponentInitializedListener {
     private TextField mobilenumber;
     @FXML
     private TextField supplieraddress;
-    @FXML
-    private ListView<String> items;
 
-    @FXML
-    private TextField itemname;
-    @FXML
-    private Button itembutton;
 
     @FXML
     private GoogleMapView googleMapView;
+
+    @FXML
+    private TextField companyname;
 
     private GoogleMap googleMap;
 
@@ -56,59 +42,40 @@ public class SupplierController implements MapComponentInitializedListener {
     private StringProperty addressProperty = new SimpleStringProperty();
 
     public void initialize() {
-        items.setEditable(true);
-        items.setCellFactory(TextFieldListCell.forListView());
-        List<StoreItem> storeItems = new ItemModel().getAllItems();
 
-        ObservableList<String> lst = FXCollections.observableArrayList();
-        for (StoreItem s : storeItems) {
-            items.getItems().add(s.getItemname());
-        }
-        items.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        items.refresh();
         googleMapView.addMapInializedListener(this);
         addressProperty.bind(supplieraddress.textProperty());
-
-        itembutton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/org/groceryshop/image/plus_20_20.png"))));
 
     }
 
 
     public void createSupplier(ActionEvent event) {
-
-    }
-
-
-    public void itemadd(ActionEvent event) {
-        setItems(itemname.getText().toUpperCase());
-        itemname.clear();
-    }
-
-
-    public void openItemAddBox(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/itemaddtosupplier.fxml"));
-            Parent parent = loader.load();
-            ItemAddToSupplierController controller = loader.getController();
-            controller.setSupplierController(this);
-            Stage stage = new Stage();
-            Scene scene = new Scene(parent);
-            stage.setTitle("Add Item");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.setAlwaysOnTop(true);
-            stage.showAndWait();
-
-        } catch (IOException io) {
-
+        Supplier supplier = new Supplier();
+        supplier.setSuppliername(suppliername.getText());
+        supplier.setMobilenumber(mobilenumber.getText());
+        supplier.setSupplieraddress(supplieraddress.getText());
+        supplier.setCompanyname(companyname.getText());
+        SupplierModel model = new SupplierModel();
+        if (model.createSupplier(supplier)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sipplier added");
+            alert.setContentText("Supplier Added Successfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fail");
+            alert.setContentText("Supplier Is Already Available");
+            alert.showAndWait();
         }
-
     }
 
 
-    public void setItems(String item) {
-        items.getItems().add(item);
-    }
+
+
+
+
+
+
 
 
     @Override

@@ -14,6 +14,7 @@ public class Supplier {
     private String suppliername;
     private String supplieraddress;
     private String mobilenumber;
+    private String companyname;
 
     private Collection<StoreItem> suppliedname = new ArrayList<>();
 
@@ -63,5 +64,13 @@ public class Supplier {
 
     public void setSuppliedname(Collection<StoreItem> suppliedname) {
         this.suppliedname = suppliedname;
+    }
+
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
     }
 }

@@ -19,21 +19,14 @@
                 </ImageView>
                 <TextField fx:id="suppliername" layoutX="16.0" layoutY="143.0" prefHeight="32.0" prefWidth="251.0"
                            promptText="Supplier Name" stylesheets="@../css/app.css"/>
-                <TextField fx:id="mobilenumber" layoutX="16.0" layoutY="186.0" prefHeight="26.0" prefWidth="251.0"
+                <TextField fx:id="companyname" layoutX="16.0" layoutY="185.0" prefHeight="26.0" prefWidth="251.0"
+                           promptText="Company Name" stylesheets="@../css/app.css"/>
+                <TextField fx:id="mobilenumber" layoutX="16.0" layoutY="227.0" prefHeight="26.0" prefWidth="251.0"
                            promptText="Mobile Number" stylesheets="@../css/app.css"/>
-                <TextField fx:id="supplieraddress" layoutX="16.0" layoutY="236.0" onAction="#findAddress"
+                <TextField fx:id="supplieraddress" layoutX="16.0" layoutY="268.0" onAction="#findAddress"
                            prefHeight="26.0" prefWidth="251.0" promptText="Address" stylesheets="@../css/app.css"/>
-                <ListView fx:id="items" editable="true" layoutX="18.0" layoutY="366.0" prefHeight="81.0"
-                          prefWidth="251.0"/>
-                <Label layoutX="18.0" layoutY="338.0" prefHeight="24.0" prefWidth="251.0" stylesheets="@../css/app.css"
-                       text="Items" textFill="#c3baba"/>
-                <Button layoutX="126.0" layoutY="476.0" mnemonicParsing="false" onAction="#createSupplier"
+                <Button layoutX="124.0" layoutY="323.0" mnemonicParsing="false" onAction="#createSupplier"
                         prefHeight="33.0" prefWidth="143.0" stylesheets="@../css/app.css" text="Add Supplier"/>
-                <TextField fx:id="itemname" layoutX="18.0" layoutY="282.0" prefHeight="32.0" prefWidth="197.0"
-                           promptText="Itemname" stylesheets="@../css/app.css"/>
-                <Button fx:id="itembutton" contentDisplay="GRAPHIC_ONLY" layoutX="217.0" layoutY="281.0"
-                        mnemonicParsing="false" onAction="#itemadd" prefHeight="33.0" prefWidth="48.0"
-                        stylesheets="@../css/app.css"/>
             </children>
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
