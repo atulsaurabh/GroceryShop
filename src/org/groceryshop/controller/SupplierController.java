@@ -16,11 +16,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.groceryshop.entity.StoreItem;
 import org.groceryshop.model.ItemModel;
@@ -41,6 +40,11 @@ public class SupplierController implements MapComponentInitializedListener {
     private TextField supplieraddress;
     @FXML
     private ListView<String> items;
+
+    @FXML
+    private TextField itemname;
+    @FXML
+    private Button itembutton;
 
     @FXML
     private GoogleMapView googleMapView;
@@ -65,11 +69,19 @@ public class SupplierController implements MapComponentInitializedListener {
         googleMapView.addMapInializedListener(this);
         addressProperty.bind(supplieraddress.textProperty());
 
+        itembutton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/org/groceryshop/image/plus_20_20.png"))));
+
     }
 
 
     public void createSupplier(ActionEvent event) {
 
+    }
+
+
+    public void itemadd(ActionEvent event) {
+        setItems(itemname.getText().toUpperCase());
+        itemname.clear();
     }
 
 
