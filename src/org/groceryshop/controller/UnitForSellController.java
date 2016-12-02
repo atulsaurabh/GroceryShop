@@ -47,13 +47,17 @@ public class UnitForSellController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Successful");
                 alert.setContentText("Unit Added Successfully");
-                alert.show();
+                alert.showAndWait();
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Failure");
                 alert.setContentText("Unit Not Added");
-                alert.show();
+
+                alert.showAndWait();
             }
+            unitname.clear();
+            divisionfactor.clear();
 
         } catch (Exception e) {
             Logger.getLogger(UnitForSellController.class.getName()).log(Level.SEVERE, "Unable to add unit for sell " + e.getMessage(), e);
