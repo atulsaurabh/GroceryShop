@@ -47,12 +47,10 @@ public class GroupCreaterController {
 
     public void createGroup(ActionEvent event) {
         ItemGroupModel model = new ItemGroupModel();
-        String g_name = itemmeasurementgroupname.getSelectionModel().getSelectedItem();
         if (!model.isGroupExist(groupname.getText().toUpperCase())) {
             ItemGroup group = new ItemGroup();
-            group.setGroupname(groupname.getText().toUpperCase());
-            SellingUnitGroup sellingUnitGroup = model.getSellingUnitByName(g_name);
-            //group.setSellingUnitGroup(sellingUnitGroup);
+            for (SubCatagory catagory : catagories)
+                group.getSubCatagories().add(catagory);
             group.setGroupname(groupname.getText().toUpperCase());
             if (model.mergeGroup(group)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -76,8 +74,7 @@ public class GroupCreaterController {
     }
 
     public void addSubCatagory(ActionEvent event) {
-        SellingUnitGroup g = new SellingUnitGroup();
-        g.setGroupname(itemmeasurementgroupname.getSelectionModel().getSelectedItem());
+        SellingUnitGroup g = new ItemGroupModel().getSellingUnitByName(itemmeasurementgroupname.getSelectionModel().getSelectedItem());
         SubCatagory subCatagory = new SubCatagory();
         subCatagory.setSubcatagoryname(subcatagory.getText().toUpperCase());
         subCatagory.setSellingUnitGroup(g);
