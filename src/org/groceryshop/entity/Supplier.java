@@ -16,7 +16,8 @@ public class Supplier {
     private String mobilenumber;
     private String companyname;
 
-    private Collection<StoreItem> suppliedname = new ArrayList<>();
+    private Collection<ItemGroup> catagory = new ArrayList<>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,25 +53,27 @@ public class Supplier {
         this.mobilenumber = mobilenumber;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "supplier_item",
-            joinColumns = {@JoinColumn(name = "supplierid")},
-            inverseJoinColumns = {@JoinColumn(name = "itemid")}
-    )
-    public Collection<StoreItem> getSuppliedname() {
-        return suppliedname;
-    }
-
-    public void setSuppliedname(Collection<StoreItem> suppliedname) {
-        this.suppliedname = suppliedname;
-    }
 
     public String getCompanyname() {
         return companyname;
     }
 
+
     public void setCompanyname(String companyname) {
         this.companyname = companyname;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "supplier_category",
+            joinColumns = {@JoinColumn(name = "supplierid")},
+            inverseJoinColumns = {@JoinColumn(name = "groupid")}
+    )
+    public Collection<ItemGroup> getCatagory() {
+        return catagory;
+    }
+
+    public void setCatagory(Collection<ItemGroup> catagory) {
+        this.catagory = catagory;
     }
 }

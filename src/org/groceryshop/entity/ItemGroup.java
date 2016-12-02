@@ -1,11 +1,8 @@
 package org.groceryshop.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by atul_saurabh on 6/11/16.
@@ -17,9 +14,8 @@ public class ItemGroup {
 
     private long groupid;
     private String groupname;
-    private SellingUnitGroup sellingUnitGroup;
+    private Set<SubCatagory> subCatagories = new HashSet<>();
 
-    private Collection<StoreItem> storeItems = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,28 +36,18 @@ public class ItemGroup {
     }
 
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    public Collection<StoreItem> getStoreItems() {
-        return storeItems;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "catagory_subcatagory",
+            joinColumns = {@JoinColumn(name = "groupid")},
+            inverseJoinColumns = {@JoinColumn(name = "subcatagoryid")}
+    )
+    public Set<SubCatagory> getSubCatagories() {
+        return subCatagories;
     }
 
-    public void setStoreItems(Collection<StoreItem> storeItems) {
-        this.storeItems = storeItems;
+    public void setSubCatagories(Set<SubCatagory> subCatagories) {
+        this.subCatagories = subCatagories;
     }
-
-
-    @OneToOne(targetEntity = SellingUnitGroup.class, cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "sellingunitgroupid")
-    public SellingUnitGroup getSellingUnitGroup() {
-        return sellingUnitGroup;
-    }
-
-    public void setSellingUnitGroup(SellingUnitGroup sellingUnitGroup) {
-        this.sellingUnitGroup = sellingUnitGroup;
-    }
-
-
 }
 
 

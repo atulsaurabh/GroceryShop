@@ -44,4 +44,9 @@ public class SellingUnitGroup {
     public void setSells(Collection<UnitForSell> sells) {
         this.sells = sells;
     }
+
+    @Override
+    public String toString() {
+        return groupname;
+    }
 }

@@ -25,3 +25,7 @@
 .text-area {
     -fx-font-size: 12pt;
 }
+
+.combo-box {
+    -fx-font-size: 12pt;
+}

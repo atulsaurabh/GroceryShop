@@ -39,7 +39,7 @@ public class ItemModel extends Group<UnitForSell> {
             for (StoreItem i : items) {
                 ItemGroup grp = session.find(ItemGroup.class, longIterator.next());
                 i.setGroup(grp);
-                grp.getStoreItems().add(i);
+                //grp.getStoreItems().add(i);
                 session.merge(grp);
                 t = t + batchFraction;
                 batch.setProgress(t);

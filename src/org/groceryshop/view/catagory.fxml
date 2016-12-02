@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.37410071942446044" maxHeight="-Infinity"
+           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="419.0"
+           prefWidth="494.0" xmlns="http://javafx.com/javafx/8.0.65"
+           fx:controller="org.groceryshop.controller.GroupCreaterController">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="175.0" prefWidth="492.0">
+            <children>
+                <Label layoutX="22.0" layoutY="19.0" prefHeight="29.0" prefWidth="157.0" stylesheets="@../css/app.css"
+                       text="Catagory Name"/>
+                <TextField fx:id="groupname" layoutX="225.0" layoutY="21.0" prefHeight="26.0" prefWidth="209.0"
+                           stylesheets="@../css/app.css"/>
+                <TextField fx:id="subcatagory" layoutX="15.0" layoutY="95.0" prefHeight="32.0" prefWidth="172.0"
+                           promptText="subcatagory name" stylesheets="@../css/app.css"/>
+                <Button layoutX="411.0" layoutY="94.0" mnemonicParsing="false" onAction="#addSubCatagory"
+                        prefHeight="33.0" prefWidth="67.0" stylesheets="@../css/app.css" text="Add"/>
+                <ComboBox layoutX="206.0" layoutY="93.0" prefHeight="26.0" prefWidth="185.0"
+                          stylesheets="@../css/app.css"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="492.0">
+            <children>
+                <TableView fx:id="subcatagorylist" prefHeight="200.0" prefWidth="492.0">
+                    <columns>
+                        <TableColumn fx:id="subcatagory_name" prefWidth="141.0" text="subcatagory"/>
+                        <TableColumn fx:id="subcat_measure" prefWidth="134.0" text="Measurement"/>
+                    </columns>
+                </TableView>
+                <Button layoutX="376.0" layoutY="210.0" mnemonicParsing="false" onAction="#createGroup"
+                        prefHeight="26.0" prefWidth="109.0" stylesheets="@../css/app.css" text="Create"/>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>

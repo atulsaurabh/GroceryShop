@@ -1,13 +1,16 @@
 package org.groceryshop.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import org.groceryshop.entity.ItemGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.groceryshop.entity.SellingUnitGroup;
-import org.groceryshop.model.ItemGroupModel;
+import org.groceryshop.entity.SubCatagory;
 import org.groceryshop.model.ItemModel;
 
 import java.util.List;
@@ -16,24 +19,35 @@ import java.util.List;
  * Created by atul_saurabh on 6/11/16.
  */
 public class GroupCreaterController {
+    ObservableList<SubCatagory> catagories = FXCollections.observableArrayList();
     @FXML
     private TextField groupname;
-
     @FXML
-    private ComboBox<String> itemgroupname;
-
+    private TextField subcatagory;
+    @FXML
+    private TableView subcatagorylist;
+    @FXML
+    private ComboBox<String> itemmeasurementgroupname;
+    @FXML
+    private TableColumn subcatagory_name;
+    @FXML
+    private TableColumn subcat_measure;
     private String itemgroup;
 
     public void initialize() {
         List<SellingUnitGroup> groups = new ItemModel().getAllItemGroup();
         for (SellingUnitGroup g : groups)
-            itemgroupname.getItems().add(g.getGroupname());
+            itemmeasurementgroupname.getItems().add(g.getGroupname());
+
+        subcatagory_name.setCellValueFactory(new PropertyValueFactory<SubCatagory, String>("subcatagoryname"));
+        subcat_measure.setCellValueFactory(new PropertyValueFactory<SubCatagory, SellingUnitGroup>("sellingUnitGroup"));
+        subcatagorylist.setItems(catagories);
 
     }
 
     public void createGroup(ActionEvent event) {
-        ItemGroupModel model = new ItemGroupModel();
-        String g_name = itemgroupname.getSelectionModel().getSelectedItem();
+        /*ItemGroupModel model = new ItemGroupModel();
+        String g_name = itemmeasurementgroupname.getSelectionModel().getSelectedItem();
         if (!model.isGroupExist(groupname.getText().toUpperCase())) {
             ItemGroup group = new ItemGroup();
             SellingUnitGroup sellingUnitGroup = model.getSellingUnitByName(g_name);
@@ -57,6 +71,15 @@ public class GroupCreaterController {
             alert.show();
         }
 
-        groupname.clear();
+        groupname.clear();*/
+    }
+
+    public void addSubCatagory(ActionEvent event) {
+        SellingUnitGroup g = new SellingUnitGroup();
+        g.setGroupname(itemmeasurementgroupname.getSelectionModel().getSelectedItem());
+        SubCatagory subCatagory = new SubCatagory();
+        subCatagory.setSubcatagoryname(subcatagory.getText());
+        subCatagory.setSellingUnitGroup(g);
+        catagories.add(subCatagory);
     }
 }
