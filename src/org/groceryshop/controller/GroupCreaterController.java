@@ -4,13 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.groceryshop.entity.ItemGroup;
 import org.groceryshop.entity.SellingUnitGroup;
 import org.groceryshop.entity.SubCatagory;
+import org.groceryshop.model.ItemGroupModel;
 import org.groceryshop.model.ItemModel;
 
 import java.util.List;
@@ -47,12 +46,13 @@ public class GroupCreaterController {
     }
 
     public void createGroup(ActionEvent event) {
-        /*ItemGroupModel model = new ItemGroupModel();
+        ItemGroupModel model = new ItemGroupModel();
         String g_name = itemmeasurementgroupname.getSelectionModel().getSelectedItem();
         if (!model.isGroupExist(groupname.getText().toUpperCase())) {
             ItemGroup group = new ItemGroup();
+            group.setGroupname(groupname.getText().toUpperCase());
             SellingUnitGroup sellingUnitGroup = model.getSellingUnitByName(g_name);
-            group.setSellingUnitGroup(sellingUnitGroup);
+            //group.setSellingUnitGroup(sellingUnitGroup);
             group.setGroupname(groupname.getText().toUpperCase());
             if (model.mergeGroup(group)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -72,15 +72,16 @@ public class GroupCreaterController {
             alert.show();
         }
 
-        groupname.clear();*/
+        groupname.clear();
     }
 
     public void addSubCatagory(ActionEvent event) {
         SellingUnitGroup g = new SellingUnitGroup();
         g.setGroupname(itemmeasurementgroupname.getSelectionModel().getSelectedItem());
         SubCatagory subCatagory = new SubCatagory();
-        subCatagory.setSubcatagoryname(subcatagory.getText());
+        subCatagory.setSubcatagoryname(subcatagory.getText().toUpperCase());
         subCatagory.setSellingUnitGroup(g);
         catagories.add(subCatagory);
+        subcatagory.clear();
     }
 }
