@@ -18,6 +18,18 @@ public class SubCatagory {
     private String subcatagoryname;
     private SellingUnitGroup sellingUnitGroup;
     private Collection<StoreItem> storeItems = new ArrayList<>();
+    private ItemGroup catagory;
+
+
+    @ManyToOne
+    @JoinColumn(name = "groupid")
+    public ItemGroup getCatagory() {
+        return catagory;
+    }
+
+    public void setCatagory(ItemGroup catagory) {
+        this.catagory = catagory;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +49,7 @@ public class SubCatagory {
         this.subcatagoryname = subcatagoryname;
     }
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "subCatagory", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     public Collection<StoreItem> getStoreItems() {
         return storeItems;
@@ -51,6 +63,8 @@ public class SubCatagory {
     @OneToOne(targetEntity = SellingUnitGroup.class, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "sellingunitgroupid")
     public SellingUnitGroup getSellingUnitGroup() {
+        if (sellingUnitGroup == null)
+            return new SellingUnitGroup();
         return sellingUnitGroup;
     }
 

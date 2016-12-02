@@ -168,8 +168,8 @@ public class MainFrameController {
 
     public void openCreateGroupWindow(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/itemgroups.fxml"));
-            Pane pane = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/groceryshop/view/catagory.fxml"));
+            SplitPane pane = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Create Item Group");
             stage.setResizable(false);

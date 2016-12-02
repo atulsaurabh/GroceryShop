@@ -69,6 +69,7 @@ public class DatabaseConnection {
             configuration.addAnnotatedClass(UnitForSell.class);
             configuration.addAnnotatedClass(SellingUnitGroup.class);
             configuration.addAnnotatedClass(Supplier.class);
+            configuration.addAnnotatedClass(SubCatagory.class);
             StandardServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(registry);
             return sessionFactory;

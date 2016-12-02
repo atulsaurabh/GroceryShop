@@ -26,7 +26,7 @@
                 <TableView fx:id="subcatagorylist" prefHeight="200.0" prefWidth="492.0">
                     <columns>
                         <TableColumn fx:id="subcatagory_name" prefWidth="141.0" text="subcatagory"/>
-                        <TableColumn fx:id="subcat_measure" prefWidth="134.0" text="Measurement"/>
+                        <TableColumn fx:id="subcat_measure" prefWidth="134.0" text="measurement"/>
                     </columns>
                 </TableView>
                 <Button layoutX="376.0" layoutY="210.0" mnemonicParsing="false" onAction="#createGroup"

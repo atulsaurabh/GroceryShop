@@ -3,8 +3,6 @@ package org.groceryshop.entity;
 import javafx.scene.control.Button;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 
 /**
@@ -29,8 +27,10 @@ public class StoreItem {
     private String groupname;
     private String printedunit;
 
-    private Collection<Supplier> suppliers = new ArrayList<>();
-    private ItemGroup group;
+    private SubCatagory subCatagory;
+
+
+
     public StoreItem(int s, Button button) {
         srno = s;
         action = button;
@@ -45,6 +45,24 @@ public class StoreItem {
         itemname = item;
         mrp_priceperunit = p;
         action = checkBox;
+    }
+
+    public float getPurchasepriceperunit() {
+        return purchasepriceperunit;
+    }
+
+    public void setPurchasepriceperunit(float purchasepriceperunit) {
+        this.purchasepriceperunit = purchasepriceperunit;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "subcatagoryid")
+    public SubCatagory getSubCatagory() {
+        return subCatagory;
+    }
+
+    public void setSubCatagory(SubCatagory subCatagory) {
+        this.subCatagory = subCatagory;
     }
 
     @Transient
@@ -148,30 +166,4 @@ public class StoreItem {
     }
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    public ItemGroup getGroup() {
-        return group;
     }
-
-    public void setGroup(ItemGroup group) {
-        this.group = group;
-    }
-
-    public float getPurchasepriceperunit() {
-        return purchasepriceperunit;
-    }
-
-    public void setPurchasepriceperunit(float purchasepriceperunit) {
-        this.purchasepriceperunit = purchasepriceperunit;
-    }
-
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "suppliedname")
-    public Collection<Supplier> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Collection<Supplier> suppliers) {
-        this.suppliers = suppliers;
-    }
-}

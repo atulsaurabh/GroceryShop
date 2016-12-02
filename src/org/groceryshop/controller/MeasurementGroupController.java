@@ -22,7 +22,8 @@ public class MeasurementGroupController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Measurement Group Added");
-            alert.show();
+            alert.showAndWait();
+            groupname.clear();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Failure");

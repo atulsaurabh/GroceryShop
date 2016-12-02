@@ -32,6 +32,7 @@ public class GroupCreaterController {
     private TableColumn subcatagory_name;
     @FXML
     private TableColumn subcat_measure;
+
     private String itemgroup;
 
     public void initialize() {

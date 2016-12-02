@@ -36,11 +36,8 @@ public class ItemGroup {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "catagory_subcatagory",
-            joinColumns = {@JoinColumn(name = "groupid")},
-            inverseJoinColumns = {@JoinColumn(name = "subcatagoryid")}
-    )
+    @OneToMany(mappedBy = "catagory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
     public Set<SubCatagory> getSubCatagories() {
         return subCatagories;
     }
