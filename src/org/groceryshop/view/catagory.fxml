@@ -17,7 +17,8 @@
                            promptText="subcatagory name" stylesheets="@../css/app.css"/>
                 <Button layoutX="411.0" layoutY="94.0" mnemonicParsing="false" onAction="#addSubCatagory"
                         prefHeight="33.0" prefWidth="67.0" stylesheets="@../css/app.css" text="Add"/>
-                <ComboBox layoutX="206.0" layoutY="93.0" prefHeight="26.0" prefWidth="185.0"
+                <ComboBox fx:id="itemmeasurementgroupname" layoutX="206.0" layoutY="93.0" prefHeight="26.0"
+                          prefWidth="185.0"
                           stylesheets="@../css/app.css"/>
             </children>
         </AnchorPane>
