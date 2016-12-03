@@ -43,6 +43,17 @@ public class ItemGroupModel extends Group<ItemGroup> {
         return false;
     }
 
+    public List<ItemGroup> getAllGroups() {
+        List<ItemGroup> groups = null;
+        SessionFactory factory = DatabaseConnection.HibernateUtil.openSessionFactory();
+        Session session = factory.openSession();
+        Query query = session.createQuery("FROM org.groceryshop.entity.ItemGroup");
+        groups = query.getResultList();
+        session.close();
+        factory.close();
+        return groups;
+    }
+
     public List<String> getAllGroups(String groupName) {
         ArrayList<String> grps = new ArrayList<>();
         try {

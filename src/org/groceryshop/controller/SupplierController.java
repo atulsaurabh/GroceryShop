@@ -9,12 +9,20 @@ import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import org.groceryshop.entity.ItemGroup;
 import org.groceryshop.entity.Supplier;
+import org.groceryshop.model.ItemGroupModel;
 import org.groceryshop.model.SupplierModel;
+
+import java.util.List;
 
 /**
  * Created by bipul on 26/11/16.
@@ -27,6 +35,12 @@ public class SupplierController implements MapComponentInitializedListener {
     private TextField mobilenumber;
     @FXML
     private TextField supplieraddress;
+
+    @FXML
+    private ComboBox<String> catagory;
+
+    @FXML
+    private ListView subcatagory;
 
 
     @FXML
@@ -42,7 +56,18 @@ public class SupplierController implements MapComponentInitializedListener {
     private StringProperty addressProperty = new SimpleStringProperty();
 
     public void initialize() {
+        ItemGroupModel itemGroupModel = new ItemGroupModel();
+        List<ItemGroup> groups = itemGroupModel.getAllGroups();
+        for (ItemGroup ig : groups) {
+            catagory.getItems().add(ig.getGroupname());
+        }
 
+        catagory.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+            }
+        });
         googleMapView.addMapInializedListener(this);
         addressProperty.bind(supplieraddress.textProperty());
 

@@ -25,7 +25,11 @@
                            promptText="Mobile Number" stylesheets="@../css/app.css"/>
                 <TextField fx:id="supplieraddress" layoutX="16.0" layoutY="268.0" onAction="#findAddress"
                            prefHeight="26.0" prefWidth="251.0" promptText="Address" stylesheets="@../css/app.css"/>
-                <Button layoutX="124.0" layoutY="323.0" mnemonicParsing="false" onAction="#createSupplier"
+                <ComboBox fx:id="catagory" layoutX="16.0" layoutY="316.0" prefHeight="26.0" prefWidth="251.0"
+                          stylesheets="@../css/app.css"/>
+                <ListView fx:id="subcatagory" layoutX="16.0" layoutY="364.0" prefHeight="89.0" prefWidth="251.0"
+                          stylesheets="@../css/app.css"/>
+                <Button layoutX="124.0" layoutY="477.0" mnemonicParsing="false" onAction="#createSupplier"
                         prefHeight="33.0" prefWidth="143.0" stylesheets="@../css/app.css" text="Add Supplier"/>
             </children>
         </AnchorPane>

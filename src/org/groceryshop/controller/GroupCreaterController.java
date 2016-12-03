@@ -49,28 +49,31 @@ public class GroupCreaterController {
         ItemGroupModel model = new ItemGroupModel();
         if (!model.isGroupExist(groupname.getText().toUpperCase())) {
             ItemGroup group = new ItemGroup();
-            for (SubCatagory catagory : catagories)
+            for (SubCatagory catagory : catagories) {
                 group.getSubCatagories().add(catagory);
+                catagory.setCatagory(group);
+            }
             group.setGroupname(groupname.getText().toUpperCase());
             if (model.mergeGroup(group)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Group Added Successfully");
                 alert.setTitle("Success");
-                alert.show();
+                alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Unable to add group");
                 alert.setTitle("Fail");
-                alert.show();
+                alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Group Already Available");
             alert.setTitle("Available");
-            alert.show();
+            alert.showAndWait();
         }
 
         groupname.clear();
+        catagories.clear();
     }
 
     public void addSubCatagory(ActionEvent event) {

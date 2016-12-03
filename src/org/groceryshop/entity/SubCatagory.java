@@ -60,7 +60,7 @@ public class SubCatagory {
     }
 
 
-    @OneToOne(targetEntity = SellingUnitGroup.class, cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(targetEntity = SellingUnitGroup.class, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE}, optional = false)
     @JoinColumn(name = "sellingunitgroupid")
     public SellingUnitGroup getSellingUnitGroup() {
 
